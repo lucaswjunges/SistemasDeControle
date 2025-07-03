@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de blocos de um sistema de controle. Existem vários blocos, incluindo um controlador, uma planta e um sensor. Os blocos são conectados por setas que indicam o fluxo de sinais. O diagrama mostra um sistema de controle de malha fechada com realimentação negativa.

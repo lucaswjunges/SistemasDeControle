@@ -1,0 +1,1 @@
+A imagem mostra um sistema mecânico com uma massa, uma mola e um amortecedor. A massa está presa a uma parede por meio da mola e do amortecedor. Uma força externa é aplicada à massa. As legendas indicam os parâmetros do sistema.

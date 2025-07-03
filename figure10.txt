@@ -1,0 +1,1 @@
+A imagem mostra um gráfico do lugar das raízes de um sistema. O eixo horizontal é o eixo real e o eixo vertical é o eixo imaginário. O lugar das raízes é traçado em azul, mostrando a trajetória dos polos de malha fechada à medida que o ganho do sistema varia. Existem polos de malha aberta, representados por 'x', e zeros de malha aberta, representados por 'o'.

@@ -1,0 +1,1 @@
+A imagem mostra um gráfico da resposta ao degrau de um sistema em malha fechada. O eixo horizontal representa o Tempo (segundos) e o eixo vertical representa a Amplitude. Uma linha azul mostra a resposta do sistema a um degrau unitário. O título do gráfico é "Resposta ao Degrau em Malha Fechada".

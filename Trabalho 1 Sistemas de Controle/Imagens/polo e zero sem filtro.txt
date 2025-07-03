@@ -1,0 +1,1 @@
+A imagem mostra um gráfico de um diagrama de polos e zeros de um sistema sem filtro. O eixo horizontal é o eixo real e o eixo vertical é o eixo imaginário. Existem polos, representados por 'x', e zeros, representados por 'o'.

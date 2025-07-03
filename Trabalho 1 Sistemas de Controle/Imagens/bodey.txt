@@ -1,0 +1,1 @@
+A imagem mostra um gráfico de um diagrama de Bode. O gráfico superior mostra a Magnitude (em dB) em função da Frequência (rad/s), e o gráfico inferior mostra a Fase (em graus) em função da Frequência (rad/s). Ambos os gráficos têm uma linha azul que representa a resposta do sistema. O título do gráfico é "Diagrama de Bode".

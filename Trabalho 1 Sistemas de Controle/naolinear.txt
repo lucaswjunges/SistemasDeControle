@@ -1,0 +1,1 @@
+A imagem mostra um gráfico da resposta de um sistema não linear. O eixo horizontal representa o Tempo (segundos) e o eixo vertical representa a Amplitude. A resposta do sistema, mostrada em azul, exibe um comportamento oscilatório e não linear.

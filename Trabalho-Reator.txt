@@ -1,0 +1,209 @@
+Trabalho: Sistema de controle de um reator químico 
+A figura mostra um sistema de controle de concentração de produto em um reator continuamente agitado, 
+usado na indústria química.  
+ 
+Neste caso se produz cyclopentenol (produto B) a partir de cyclopentadiene (produto A) pela adição de um 
+catalizador diluído em água. O sistema ainda produz dois produtos residuais dicyclopentadiene (produto D) 
+e cyclopentanediol (produto C). A reação vem dada por: 
+ 
+A dinâmica de produção de B neste caso pode ser representada por:  
+ 
+Os parâmetros  k_1, k_2 e k_3 se consideram constantes quando o reator trabalha a temperatura constante 
+(k1 =6.01 [1/min], k2 = 0.8433 [1/min], k3 = 0.1123 [mol/(l min)]).   
+A  concentração  que  se  quer  controlar  Cb  [mol/l]  (do produto  B), depende  de Ca e Caf,  que  são  as 
+concentrações de A [mol/l] no reator e no fluido de alimentação, respectivamente, e também da  vazão F 
+[l/min] da diluição. V é o volume [l] do reator, que é constante. 
+O sistema usa u=F/V como variável manipulada e C
+af
+, a concentração da entrada é a principal perturbação. 
+u pode variar entre 0 e 10 l/min
+ 
+, e a concentração de entrada Caf entre 4.0 e 6 mol/l. 
+
+PARTE 1 – ANÁLISE DO SISTEMA E PROJETO POR ALOCAÇÃO  
+1) Analise o funcionamento do sistema em equilíbrio desenhando as características estáticas dentro da 
+faixa de variação das diferentes variáveis envolvidas.  
+ 
+2) Usando Simulink, estude por simulação o comportamento dinâmico do sistema e verifique os pontos 
+de equilíbrio encontrados no modelo estático. Para o ponto de equilíbrio dado por Caf = 5.1 mol/l   e 
+u= 1 [1/min] determine  a concentração de  funcionamento  em  equilíbrio
+  
+do produto  A  (C
+a
+)  e  do 
+produto B (C
+b
+). 
+ 
+3) Para  o  ponto  achado  linearize  o  sistema  encontrando  um  modelo  incremental  dinâmico.  Desenhe 
+um  diagrama  de  blocos  do  sistema  não  linear  e  do  sistema  linearizado.  Aplique  transformada  de 
+Laplace no sistema linearizado e desenhe o diagrama de blocos em domínio “s”.  
+ 
+4) Para o sistema linearizado, usando operações com blocos encontre as funções de transferência que 
+relacionam as variáveis manipulada e perturbação com as duas concentrações.  
+ 
+5) Usando   simulink,   estude   por   simulação   o   comportamento   deste   sistema   e   compare   o 
+comportamento  com  o  do  sistema  não  linear  nas  proximidades  do  ponto  de equilíbrio. Repita  a 
+análise usando matlab (código .m). Para a simulação em matlab do processo aproxime a derivadas 
+por dx/dt = (1/Tc)*(x(k+1) – x(k)), sendo Tc o tempo de cálculo da aproximação. 
+ 
+6) Realizando experimentos com o modelo não linear nas proximidades do ponto do equilíbrio obtenha 
+um modelo simples de 1 ordem para as relações entre a variável manipulada e a concentração de B 
+e a perturbação e a concentração de B. Projete um controle PI contínuo usando a técnica de alocação 
+de polos para obter em malha fechada um sistema com t5% da ordem de 1.5 a 1.7 minutos e pico 
+menor  que  5%.  Essa  especificação  deve  ser  atendida  para  resposta  a  seguimentos  de  degraus  de 
+referência   de   C
+B
+ e   perturbações   de   C
+AF
+.   Use   filtro   de   referência   se   necessário.   Estude   o 
+comportamento do sistema sobre o modelo linearizado. 
+ 
+7) Analise as respostas em MF do sistema para degraus de referência e perturbação por simulação e 
+interprete  os  resultados  usando  diagramas  polo-zero  e  de  resposta  em  frequência.  Observe  e 
+quantifique  as  propriedades  estáticas  e  dinâmicas  das  respostas.  Poderia  obter  respostas  mais 
+rápidas? Como?  
+ 
+8) Usando Simulink, estude por simulação o comportamento dinâmico do sistema em MF com o modelo 
+completo não linear e verifique se atende as especificações. Implemente um cenário de simulação 
+com a partida do sistema em rampa até chegar no ponto e operação. Simule, então, variações perto 
+do ponto de operação e aplique perturbações. Poderia obter respostas mais rápidas? Porque? Que 
+acontece com o sistema ao se afastar do ponto de operação? 
+ 
+ 
+9) Discretize o controle do ponto 1, escolhendo adequadamente T
+s
+. Implemente o controle em matlab, 
+escrevendo  o  código  de  controle.  Simule  um  cenário  onde  o  sistema  é  levado  até  o  ponto  de 
+operação   em   modo   MANUAL   e   somente   então   o   controle   passa   a   AUTOMATICO.   Usando 
+
+ferramentas no domínio da frequência analise o seu controle discretizado e compare com o contínuo. 
+Analise o efeito da amostragem. 
+ 
+IMPORTANTE: Realize todas as análises manualmente, sem ajuda do MATLAB, apenas use o software para 
+conferir resultados.  
+O TRABALHO DEVE SER APRESENTADO ORALMENTE PELO GRUPO, PODENDO SER NUM ÚNICO DIA OU EM 
+PARTES, A MEDIDA QUE VAI SENDO REALIZADO O TRABALHO. AS NOTAS SERÃO INDIVIDUAIS DE ACORDO 
+COM ESTAS APRESENTAÇÕES E OS RESULTADOS OBTIDOS.  
+ 
+APRESENTE UM RELATÓRIO ESCRITO DO TRABALHO PARA ENTREGA COM UM RELATO DOS RESULTADOS. 
+ 
+ESTAS OBSERVAÇÕES AINDA SÃO VÁLIDAS PARA AS OUTRAS PARTES DO TRABALHO. 
+  
+
+PARTE 2 – ANÁLISE E PROJETO POR LR 
+Na parte 1 se analisou o modelo e o sistema de controle de concentração de produto em um 
+reator continuamente agitado, usado na indústria química. O controle usado foi um PI básico 
+de CB ajustado por alocação de polos.  
+ 
+A  dinâmica  de  produção  de  A  e  B  foi  modelada nas  vizinhanças  de  um  ponto  de  operação 
+dado por CAF = 5.1 mol/l e u= 0.8 [1/min]. O reator tem parâmetros: k1 =6,01 [1/min], k2 = 
+0.8433  [1/min],  k3  =  0.1123  [mol/(l  min)]. Lembrando  que  o  sistema  usa  u=F/V  como 
+variável manipulada e CAF (concentração da entrada) é a perturbação. u pode variar entre 0 
+e 10 l/min , e a concentração de entrada CAF entre 4.0 e 6 mol/l.  
+ 
+O modelo para ser usado no projeto do controle é então o obtido pela linearização analítica 
+do modelo não linear nesse ponto de operação. Observe que esse novo modelo considera 
+também a dinâmica de CA. Assim, neste caso pode se escrever:  
+ 
+(s+1.6433) Cb(s) = 6.01 Ca(s) – 2.1699 U(s)  
+(s+6.9433) Ca(s) = 0.8 Caf(s) + 4.5067 U(s)  
+ 
+Recomenda-se  desenhar  um  diagrama  de  blocos  deste  modelo  para  ver a  relação  entre 
+variáveis.  
+PEDE-SE: 
+1) Nesta  parte, supõe-se  que  somente  a  medida  de  C
+B
+ pode  ser  usada  na  malha  de 
+controle.  
+a) Projete  um  controle  contínuo  usando  a  técnica  de lugar  de  raízes para  obter  em 
+malha  fechada  um  sistema  com  t5%  da  ordem de  1.5 minutos  e  pico  menor  que 
+5%. Essa especificação deve ser atendida para resposta a seguimentos de degraus 
+de referência de C
+B
+ e perturbações de C
+AF
+. Use filtro de referência se necessário. O 
+sistema deve ter ganho estático unitário para a relação referência-saída de C
+B.
+ 
+b) Estude  o  comportamento  do  sistema  sobre  o  modelo  linearizado por  simulação. 
+Realize análise dos diagramas polo-zero e da resposta em frequência do sistema e 
+interprete  os  resultados.  Observe  o  sinal  de  controle  nos  ensaios  realizados. 
+Compare este controle com o PI projetado na parte 1. Discuta. 
+2) Usando Simulink, estude por simulação o comportamento dinâmico do sistema em MF 
+com   o   modelo   completo   não   linear   e verifique se   atende   as   especificações. 
+Implemente um cenário de simulação com a partida do sistema em rampa até chegar 
+no ponto e operação. Simule, então, variações perto do ponto de operação e aplique 
+perturbações. Que  acontece  com  o  sistema  ao  se  afastar  do  ponto  de  operação? 
+Compare este controle com o PI projetado e discuta. 
+
+3) Considere agora que dispõe de mais um sensor de concentração que pode ser usado 
+para medir C
+AF
+ ou  C
+A
+.  
+a) Proponha dois sistemas de controle, um com cada uma das medições disponíveis, 
+de  forma a melhorar  o  desempenho  obtido  no  item  2. Ajuste  estes  dois  novos 
+sistemas de controle, compare e decida qual é mais interessante.  Pode realizar os 
+projetos  no  plano  s.  Usando  ainda  o  processo  modelado  de  forma  linear  simule, 
+analise diagramas polo-zero e interprete os resultados. 
+b) Implemente   em   matlab   (no   tempo   discreto) a   solução escolhida definindo 
+adequadamente T
+s
+ supondo um sustentador de ordem zero no sistema AD/DA.  
+4) Simule agora o sistema não linear controlado em MF com a sua proposta de controle. 
+Utilize um  cenário  onde  o  sistema  é  levado  até  o  ponto  de  operação  em  modo 
+automático  com  uma  rampa  de  aproximação (defina  uma  rampa  de  referência 
+adequada). Aplique perturbações e simule ruídos de medição para obter um cenário 
+próximo  da  realidade. Analise  os  sinais,  compare  os  resultados  com  os  da  parte  1  e 
+discuta. 
+ 
+  
+
+PARTE 3 - Sistema de controle de um reator químico com atraso 
+de medição de concentração 
+Na parte 2 se estudou  o  controle  completo  da concentração  de  produto  em  um  reator 
+continuamente  agitado,  usado  na  indústria  química. Para  este  sistema  foi estudada uma 
+estrutura com uma malha interna e uma externa, assim como com ação feed fordward. 
+Para esta tarefa temos que estudar o mesmo problema da parte 2 (usando o mesmo ponto 
+de equilíbrio e o mesmo modelo) mas considerando que na medida de concentração de saída 
+B tem um atraso de 3 minutos causado pelo deslocamento do produto até o sensor e o tempo 
+de  processamento  do  sensor.  Assim,  neste  caso,  o  sistema  de  controle  da  malha  principal 
+deveria ser reajustado. A malha interna de C
+A
+ ou o feedforward de C
+AF
+ não serão mais usadas 
+aqui.  
+PEDE-SE: 
+1) Projete  um controle com base no Preditor de Smith (em tempo discreto) para obter 
+em  malha  fechada  um  sistema com  aproximadamente  as  mesmas  caraterísticas 
+transitórias (t5% e pico) e permanentes (erro em regime permanente) que as obtidas 
+na parte 2 (considere  o t5%  medido  depois  do  atraso). Essa  especificação  deve  ser 
+atendida para resposta a seguimentos de degraus de referência de C
+B
+ e perturbações 
+de C
+AF
+. Use filtro de referência se necessário. Lembre-se que o sistema deve ter ganho 
+estático  unitário  para  a  relação  referência-saída  de  C
+B. 
+Estude  o  comportamento  do 
+sistema sobre o modelo linearizado por simulação. Conclua sobre as propriedades em 
+MF do Preditor de Smith para este sistema. As especificações foram atendidas? 
+2)  Usando Simulink,  estude  por simulação  o  comportamento  dinâmico  do  sistema em 
+MF com o modelo completo não linear e verifique se atende as especificações. Utilize 
+o mesmo cenário da parte 2, com a partida do sistema em rampa até chegar no ponto 
+e operação e variações perto do ponto de operação, inclusive com perturbações. Que 
+acontece  com  o  sistema  ao  se  afastar  do  ponto  de  operação? Realize  um  estudo  de 
+robustez para justificar os resultados. 
+3) Considere  agora que deseja  melhorar  a  resposta  do  Preditor  de  Smith.  Utilize  então 
+um Preditor de Smith filtrado para o controle de C
+B
+. Que pode ser melhorado com este 
+novo controle? Repita as simulações para o modelo linear e não linear. A performance 
+é melhorada como previsto em ambos os casos? Discuta e justifique os resultados com 
+uma análise de robustez do sistema. Encontre o controle equivalente e analise a ordem 
+do mesmo e sua implementação por equações a diferença.

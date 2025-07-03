@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de blocos de um sistema de controle no Simulink. Existem vários blocos, incluindo um degrau, um somador, um controlador, uma função de transferência e um osciloscópio. Os blocos são conectados por setas que indicam o fluxo de sinais.

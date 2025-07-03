@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de um robô manipulador. O robô tem vários links e juntas, permitindo que ele mova sua ferramenta de extremidade para uma posição e orientação desejadas no espaço. O diagrama mostra a cinemática do robô.

@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de um sistema de controle de nível de líquido. Um tanque é preenchido com líquido de uma fonte de entrada. O nível do líquido no tanque é medido por um sensor. Um controlador ajusta a válvula de entrada para manter o nível do líquido no valor desejado.

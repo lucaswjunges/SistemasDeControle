@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de um motor DC. O diagrama mostra o circuito elétrico do motor, incluindo a armadura e o campo. Também mostra o lado mecânico, com o rotor e a carga. As legendas indicam os parâmetros do motor.

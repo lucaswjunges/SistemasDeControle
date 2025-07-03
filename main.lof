@@ -1,0 +1,24 @@
+\babel@toc {brazil}{}\relax 
+\contentsline {figure}{\numberline {1}{\ignorespaces Reator químico}}{4}{figure.caption.3}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Diagrama de Blocos do sistema discreto com Preditor de Smith}}{7}{figure.caption.4}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Resposta ao degrau, entrada degrau e sinal de controle discreto}}{7}{figure.caption.5}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Diagrama de Blocos do sistema discreto com Preditor de Smith e Filtro de Referência}}{8}{figure.caption.6}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Resposta ao degrau, entrada degrau e sinal de controle discreto com Filtro de Referência}}{9}{figure.caption.7}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Resposta ao degrau perturbação, entrada degrau e sinal de controle discreto à perturbação com Filtro de Referência}}{10}{figure.caption.8}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Preditor de Smith com sistema não linear}}{11}{figure.caption.9}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Resposta Y/R no sistema não linear com mudanças do tipo degrau na referência}}{11}{figure.caption.10}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Resposta Y/Q no sistema não linear com mudanças do tipo degrau na perturbação}}{12}{figure.caption.11}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Variação Grande de Referência}}{12}{figure.caption.12}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Curvas de erros multiplicativos}}{14}{figure.caption.13}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Análise de Robustez }}{15}{figure.caption.14}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Diagrama de Blocos de Preditor de Smith Filtrado}}{16}{figure.caption.15}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Estrutura Preditor de Smith Filtrado}}{18}{figure.caption.16}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Estrutura Preditor de Smith Filtrado Implementavel (Modelo linear)}}{18}{figure.caption.17}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Respostas P.S.F a mudanças de degrau na referência (Modelo linear)}}{18}{figure.caption.18}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Respostas P.S.F a mudanças de degrau na perturbação (Modelo linear)}}{19}{figure.caption.19}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Estrutura Preditor de Smith Filtrado Implementavel (Modelo não linear)}}{19}{figure.caption.20}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Respostas P.S.F a mudanças de degrau na referência (Modelo não linear)}}{19}{figure.caption.21}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Respostas P.S.F a mudanças de degrau na perturbação (Modelo não linear)}}{20}{figure.caption.22}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Análise de Robustez P.S Filtrado}}{20}{figure.caption.23}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Diagrama de Blocos Preditor de Smith Filtrado}}{21}{figure.caption.24}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Controlador equivalente do P.S.F}}{21}{figure.caption.25}%

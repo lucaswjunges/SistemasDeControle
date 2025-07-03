@@ -1,0 +1,1 @@
+A imagem mostra um gráfico da resposta de um sistema a uma entrada senoidal. O eixo horizontal representa o Tempo (segundos) e o eixo vertical representa a Amplitude. Existem duas curvas no gráfico: uma azul que representa a saída do sistema e uma laranja que representa a entrada senoidal. O título do gráfico é "Resposta a uma Entrada Senoidal".

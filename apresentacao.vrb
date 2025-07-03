@@ -1,0 +1,13 @@
+\frametitle{Prováveis Perguntas do Professor (Cont.)}
+\begin{beamercolorbox}[rounded=true,shadow=true]{blockbody}
+        \textbf{P3: O Preditor de Smith depende de um modelo preciso. O que aconteceria se o atraso real do processo fosse de 4 minutos, mas seu modelo usasse 3 minutos?}
+        \pause
+        \textit{R: A predição estaria errada. O sistema de controle não conseguiria cancelar perfeitamente o efeito do atraso. Isso resultaria em um desempenho degradado, com oscilações e menor robustez. Em casos de grande erro de modelagem, o sistema poderia até se tornar instável. Isso destaca a importância da identificação precisa do processo para o sucesso do Preditor de Smith.}
+    \end{beamercolorbox}
+    \vspace{1em}
+    \pause
+    \begin{beamercolorbox}[rounded=true,shadow=true]{blockbody}
+        \textbf{P4: Na sua simulação final com ruído, como o ruído de medição afetou o sinal de controle? Que medidas poderiam ser tomadas?}
+        \pause
+        \textit{R: O ruído de medição, especialmente se amplificado pela ação derivativa do controlador PID, pode causar um sinal de controle muito "nervoso" e errático. Isso pode levar ao desgaste de atuadores (válvulas, etc.). Para mitigar isso, poderíamos: 1) Adicionar um filtro ao termo derivativo do controlador. 2) Filtrar o sinal de medição antes de ele entrar no controlador. 3) Reduzir o ganho derivativo, aceitando um desempenho um pouco mais lento em troca de um controle mais suave.}
+    \end{beamercolorbox}

@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de um sistema de controle de pH. Um tanque contém uma solução cujo pH precisa ser controlado. Um reagente é adicionado ao tanque para ajustar o pH. Um sensor de pH mede o pH da solução e um controlador ajusta a adição de reagente para manter o pH no valor desejado.

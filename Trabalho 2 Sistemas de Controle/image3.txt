@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de um circuito elétrico. O circuito contém uma fonte de tensão, um resistor, um indutor e um capacitor. Os componentes são conectados em série. As legendas indicam os valores de cada componente.

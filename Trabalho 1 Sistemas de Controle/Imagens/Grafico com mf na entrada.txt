@@ -1,0 +1,1 @@
+A imagem mostra um gráfico da resposta de um sistema com malha fechada na entrada. O eixo horizontal representa o Tempo (s) e o eixo vertical representa a Amplitude. A resposta do sistema, mostrada em azul, é estável e converge para o valor de referência.

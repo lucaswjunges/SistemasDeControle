@@ -1,0 +1,1 @@
+A imagem mostra um gráfico de um diagrama de polos e zeros. O eixo horizontal é o eixo real e o eixo vertical é o eixo imaginário. Existem dois polos, representados por 'x', no semiplano esquerdo do plano complexo. O título do gráfico é "Diagrama de Polos e Zeros".

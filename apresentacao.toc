@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Parte 1: Análise e Controle PI por Alocação de Polos}{3}{0}{1}
+\beamer@sectionintoc {2}{Parte 2: Controle Avançado por Lugar das Raízes}{5}{0}{2}
+\beamer@sectionintoc {3}{Parte 3: Lidando com Atraso de Medição}{8}{0}{3}
+\beamer@sectionintoc {4}{Conclusões e Perguntas}{9}{0}{4}

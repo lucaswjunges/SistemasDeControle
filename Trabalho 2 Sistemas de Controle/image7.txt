@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de um sistema de levitação magnética. Uma esfera de metal é suspensa no ar por um eletroímã. Um sensor mede a posição da esfera e um controlador ajusta a corrente no eletroímã para manter a esfera na posição desejada.

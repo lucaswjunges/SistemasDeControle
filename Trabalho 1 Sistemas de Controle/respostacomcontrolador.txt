@@ -1,0 +1,1 @@
+A imagem mostra um gráfico da resposta de um sistema com controlador. O eixo horizontal representa o Tempo (segundos) e o eixo vertical representa a Amplitude. A resposta do sistema, mostrada em azul, é estável e converge para o valor de referência.

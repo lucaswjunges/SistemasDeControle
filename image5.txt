@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de um pêndulo invertido. O pêndulo é montado em um carrinho que pode se mover horizontalmente. O objetivo do sistema de controle é manter o pêndulo na posição vertical. As legendas indicam as variáveis do sistema.

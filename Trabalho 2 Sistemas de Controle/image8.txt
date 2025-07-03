@@ -1,0 +1,1 @@
+A imagem mostra um diagrama de um sistema de controle de temperatura. Um forno é aquecido por um elemento de aquecimento. Um termopar mede a temperatura dentro do forno e um controlador ajusta a potência do elemento de aquecimento para manter a temperatura no valor desejado.

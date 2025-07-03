@@ -1,0 +1,1 @@
+A imagem mostra um gráfico com duas curvas. O eixo horizontal representa o Tempo (s) e o eixo vertical representa a Velocidade (m/s). Uma curva azul representa a Velocidade e uma curva vermelha representa a Velocidade de Referência. O título do gráfico é "Controle de Velocidade".

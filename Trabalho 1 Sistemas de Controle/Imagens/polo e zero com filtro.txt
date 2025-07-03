@@ -1,0 +1,1 @@
+A imagem mostra um gráfico de um diagrama de polos e zeros de um sistema com filtro. O eixo horizontal é o eixo real e o eixo vertical é o eixo imaginário. Existem polos, representados por 'x', e zeros, representados por 'o'. A adição do filtro modifica a posição dos polos e zeros do sistema.
