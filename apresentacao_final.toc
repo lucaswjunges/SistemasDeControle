@@ -1,1 +1,4 @@
 \babel@toc {brazil}{}\relax 
+\beamer@sectionintoc {1}{O Problema e a Modelagem}{5}{0}{1}
+\beamer@sectionintoc {2}{Estratégias de Controle}{9}{0}{2}
+\beamer@sectionintoc {3}{Conclusões}{19}{0}{3}
