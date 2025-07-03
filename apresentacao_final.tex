@@ -111,22 +111,29 @@
 
 % --- Parte II: LR + FF ---
 \begin{frame}{Parte II: A Solução Inteligente (LR + Feedforward)}
-    \large \textbf{Abordagem:} Melhorar o desempenho com um controlador mais robusto e uma estratégia preditiva.
-    \vspace{0.5em}
+    \normalsize \textbf{Abordagem:} Melhorar o desempenho com controlador robusto e predição.
+    \vspace{0.01em}
     
-    \small
-    \textbf{1. Controlador por Lugar das Raízes (LR):} Projetamos um controlador mais sofisticado para a função de transferência de 2ª ordem, resultando em uma resposta mais suave.
+    \scriptsize
+    \textbf{1. Controlador por Lugar das Raízes (LR):} Controlador sofisticado para função de 2ª ordem, resposta suave.
     \tiny \[ C(s)=\frac{5.2946(s+3.835)^2}{s(s+20)} \]
     
-    \vspace{0.5em}
-    \small
-    \textbf{2. Controle Feedforward:} Para combater a perturbação (\(C_{af}\)) proativamente, nós a medimos e usamos essa informação para ajustar a entrada e anular seu efeito.
+    \vspace{0.01em}
+    \scriptsize
+    \textbf{2. Controle Feedforward:} Combater perturbação (\(C_{af}\)) ajustando a entrada proativamente.
     
-    \begin{figure}
-        \includegraphics[width=0.3\textwidth]{"Trabalho 2 Sistemas de Controle/image3".png}
-        \includegraphics[width=0.3\textwidth]{"Trabalho 2 Sistemas de Controle/image2".png}
-        \caption{\tiny Desempenho sem (esquerda) e com (direita) Feedforward.}
-    \end{figure}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[width=0.25\textwidth]{"Trabalho 2 Sistemas de Controle/image3".png}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[width=0.25\textwidth]{"Trabalho 2 Sistemas de Controle/image2".png}
+            \end{figure}
+        \end{column}
+    \end{columns}
     
     \note{Aqui, damos um passo à frente. O controlador por LR é mais adaptado à dinâmica do sistema. O grande salto de qualidade vem com o Feedforward, que nos permite anular a perturbação de forma muito eficaz.}
 \end{frame}
@@ -156,16 +163,16 @@
 \begin{frame}{Quadro Comparativo das Estratégias de Controle}
     \centering
     \tiny
-    \renewcommand{\arraystretch}{1.1}
-    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \renewcommand{\arraystretch}{1.0}
+    \begin{tabularx}{\textwidth}{|p{1.6cm}|p{2.1cm}|p{2.6cm}|p{2.6cm}|}
         \hline
         \textbf{Estratégia} & \textbf{Princípio} & \textbf{Prós} & \textbf{Contras} \\
         \hline
-        PI Clássico & Linearização e controle PI & Simples, robusto, fácil implementação & Eficaz só perto do ponto de operação, desempenho limitado \\
+        PI Clássico & Linearização e controle PI & Simples, robusto, fácil de implemen-tar & Eficaz só perto do ponto de operação, desempenho ruim \\
         \hline
-        LR + Feedforward & Alocação de polos + ação preditiva & Excelente rejeição a perturbações, desempenho superior & Mais complexo, requer sensor extra, maior custo \\
+        LR + Feed-forward & Alocação de polos + predição & Boa rejeição a perturba-ções, desempenho superior & Mais complexo, precisa de sensor extra, custo maior \\
         \hline
-        Preditor de Smith & Compensação de atraso via modelo & Essencial para sistemas com atraso, mantém desempenho & Depende da precisão do modelo, sensível a erros de atraso \\
+        Preditor de Smith & Compensação de atraso via modelo & Essencial para sistemas com atraso, mantém desem-penho & Depende da precisão do mo-delo, sensível a erro de atraso \\
         \hline
     \end{tabularx}
     \note{Este quadro facilita a comparação direta das estratégias, ajudando a escolher a mais adequada para cada situação. Use este slide para reforçar os pontos-chave antes das conclusões.}

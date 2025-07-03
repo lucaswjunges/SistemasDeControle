@@ -2,12 +2,12 @@
 \contentsline {chapter}{\numberline {1}Introdução}{3}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Parte I: Análise e Controle por Alocação de Polos}{4}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Análise do Sistema em Equilíbrio}{4}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Linearização e Projeto do Controlador PI}{5}{section.2.2}%
+\contentsline {section}{\numberline {2.2}Linearização e Projeto do Controlador PI}{4}{section.2.2}%
 \contentsline {chapter}{\numberline {3}Parte II: Controle por Lugar das Raízes e Feedforward}{6}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Projeto de Controle por Lugar das Raízes (LR)}{6}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Melhora com Controle Feedforward}{7}{section.3.2}%
-\contentsline {chapter}{\numberline {4}Parte III: Controle com Atraso de Medição}{8}{chapter.4}%
-\contentsline {section}{\numberline {4.1}O Desafio do Atraso de Tempo}{8}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Solução: Preditor de Smith}{8}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Resultados da Simulação}{9}{subsection.4.2.1}%
-\contentsline {chapter}{\numberline {5}Conclusões Gerais}{10}{chapter.5}%
+\contentsline {section}{\numberline {3.2}Melhora com Controle Feedforward}{6}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Parte III: Controle com Atraso de Medição}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}O Desafio do Atraso de Tempo}{7}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Solução: Preditor de Smith}{7}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Resultados da Simulação}{7}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}Conclusões Gerais}{8}{chapter.5}%
