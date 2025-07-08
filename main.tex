@@ -3,7 +3,7 @@
 % Pacotes necessários
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
-% \usepackage{hyperref}
+\usepackage{hyperref}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{caption}
@@ -41,12 +41,12 @@ Lucas William Junges}
 \end{titlepage}
 
 % Lista de ilustrações
-% \listoffigures
-% \clearpage
+\listoffigures
+\clearpage
 
-% % Sumário
-% \tableofcontents
-% \clearpage
+% Sumário
+\tableofcontents
+\clearpage
 
 
 
@@ -184,12 +184,17 @@ A validação do modelo linearizado é realizada através da comparação das re
 \lstset{
   language=Matlab,
   basicstyle=\ttfamily\footnotesize,
-  keywordstyle=\color{blue},
-  commentstyle=\color{gray},
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{green!60!black},
   stringstyle=\color{red},
-  frame=single,
+  showstringspaces=false,
   breaklines=true,
-  showstringspaces=false
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  backgroundcolor=\color{gray!10},
+  tabsize=2,
+  captionpos=b
 }
 
 \begin{lstlisting}[caption=Codigo MATLAB para simulacao comparativa]
@@ -1153,7 +1158,7 @@ Para realizar um estudo sobre a robustez do sistema utilizando a planta lineariz
 G_i(s) = \frac{-2.17(s - 5.54)e^{-3s}}{(s + 6.94)(s + 1.64)}
 \]
 \newpage
-E fizemos o seguinte código para análise:
+E foi feito o seguinte código para análise:
 
 %\begin{verbatim}
 \begin{lstlisting}
@@ -1305,7 +1310,7 @@ Fe(z) = \frac{a^2z+bz+c}{(z-\lambda)^2}
 \end{equation}
 
 
-Vamos iniciar obtendo o valor de $\lambda$, utilizando o tempo de assentamento desejado e a aproximação para polos reais e iguais. Para facilitar, obtemos inicialmente o polo desejado  no continuo e depois realizaremos a discretização.
+Vamos iniciar obtendo o valor de $\lambda$, utilizando o tempo de assentamento desejado e a aproximação para polos reais e iguais. Para facilitar, obtém-se inicialmente o polo desejado  no continuo e depois realizaremos a discretização.
 
 
 Polo desejado no contínuo:
@@ -1314,7 +1319,7 @@ Polo desejado no contínuo:
 t_{(5\%)} = \frac{3}{pd} = 1.5 \xrightarrow{} pd = \frac{3}{1.5} = 2
 \end{equation}
 
-Passando para o discreto, temos:
+Passando para o discreto, tem-se:
 
 \begin{equation}
 \lambda = e^{(-pd.Ts)} = e^{(-2*0.07)} = 0.869
@@ -1348,7 +1353,7 @@ Chegamos na seguinte equação:
 a * pz^2_i + b*pz_i + c = (pz_i - \lambda)^2 * pz^d_i
 \end{equation}
 
-Como temos dois polos indesejados, vamos obter as seguintes iguais com valores dos polos indesejados. Com essas duas e mais a equação obtida pela primeira condição obtemos o seguinte sistema de equações.
+Como tem-se dois polos indesejados, vamos obter as seguintes iguais com valores dos polos indesejados. Com essas duas e mais a equação obtida pela primeira condição obtém-se o seguinte sistema de equações.
 
 \begin{equation}
 a + b + c = (1 - \lambda)^2
@@ -1374,7 +1379,7 @@ a * (0.608)^2 + b * 0.608  + c = (0.608 - 0.869)^2 * 0.608^{43}
 a * (0.893)^2 + b * 0.893  + c = (0.893 - 0.869)^2 * 0.893^{43}
 \end{equation}\\
 
-Resolvendo o sistema de equações acima, obtemos os seguintes valores para os parametros do filtro de projeção
+Resolvendo o sistema de equações acima, obtém-se os seguintes valores para os parametros do filtro de projeção
 
 \begin{equation}
 a =  0.409141
@@ -1386,7 +1391,7 @@ b = -0.61412
 c = 0.222141
 \end{equation}\\
 
-Dessa forma, obtemos o seguinte filtro de projeção:\\
+Dessa forma, obtém-se o seguinte filtro de projeção:\\
 
 \begin{equation}
 Fe(z) = \frac{0.409141z^2 - 0.61412z + 0.222141}{(z-0.869)^2}
@@ -1395,7 +1400,7 @@ Fe(z) = \frac{0.409141z^2 - 0.61412z + 0.222141}{(z-0.869)^2}
 Fe(z) = \frac{0.409141z^2 - 0.61412z + 0.222141}{z^2 - 1.738 + 0.755}
 \end{equation}\\
 
-Agora iremos analisar o comportamento do sistema linear com o Preditor de Smith Filtrado, adicionando o filtro de projeção na estrutura do Preditor de Smith, obtemos:
+Agora iremos analisar o comportamento do sistema linear com o Preditor de Smith Filtrado, adicionando o filtro de projeção na estrutura do Preditor de Smith, obtém-se:
 
 \begin{figure}[h]
     \centering
@@ -1404,7 +1409,7 @@ Agora iremos analisar o comportamento do sistema linear com o Preditor de Smith 
     \label{fig:psf_implementation_practical}
 \end{figure}
 
-Contudo, para que possamos implementar o filtro desenvolvido, temos que alterar a estrutura do Preditor de Smith afim de obter uma equivalente estável. Dessa forma, chegamos no seguinte Preditor de Smith filtrado equivalente estável e implementável.
+Contudo, para que possamos implementar o filtro desenvolvido, tem-se que alterar a estrutura do Preditor de Smith afim de obter uma equivalente estável. Dessa forma, chegamos no seguinte Preditor de Smith filtrado equivalente estável e implementável.
 
 \begin{figure}[H]
     \centering
@@ -1422,7 +1427,7 @@ S = G(z)*(1-Fe(z)z^-d)
 P = G(z)*z^-d
 \end{equation}
 
-Dessa forma, obtemos a seguinte resposta a mudanças do tipo degrau na referencia:
+Dessa forma, obtém-se a seguinte resposta a mudanças do tipo degrau na referencia:
 
 \begin{figure}[H]
     \centering
@@ -1431,7 +1436,7 @@ Dessa forma, obtemos a seguinte resposta a mudanças do tipo degrau na referenci
     \label{fig:psf_step_response_ref}
 \end{figure}
 
-Agora, obtemos a seguinte resposta a mudanças do tipo degrau na perturbação:
+Agora, obtém-se a seguinte resposta a mudanças do tipo degrau na perturbação:
 
 \begin{figure}[H]
     \centering
@@ -1440,7 +1445,7 @@ Agora, obtemos a seguinte resposta a mudanças do tipo degrau na perturbação:
     \label{fig:psf_step_response_disturbance}
 \end{figure}
 
-Assim, para o sistema não linear temos a seguinte estrutura:
+Assim, para o sistema não linear tem-se a seguinte estrutura:
 
 \begin{figure}[H]
     \centering
@@ -1449,7 +1454,7 @@ Assim, para o sistema não linear temos a seguinte estrutura:
     \label{fig:psf_nonlinear_structure}
 \end{figure}
 
-Onde, obtemos a seguinte resposta a mudanças do tipo degrau na referencia:
+Onde, obtém-se a seguinte resposta a mudanças do tipo degrau na referencia:
 
 \begin{figure} [H]
     \centering
@@ -1458,7 +1463,7 @@ Onde, obtemos a seguinte resposta a mudanças do tipo degrau na referencia:
     \label{fig:psf_nonlinear_ref_response}
 \end{figure}
 
-Neste caso, obtemos um tempo de assentamento de 1.52 minutos, oque visto pelo grupo é aceitavel.
+Neste caso, obtém-se um tempo de assentamento de 1.52 minutos, oque visto pelo grupo é aceitavel.
 
 E tambem a seguinte resposta para mudanças do tipo degrau na perturbação:
 
@@ -1469,11 +1474,11 @@ E tambem a seguinte resposta para mudanças do tipo degrau na perturbação:
     \label{fig:psf_nonlinear_disturbance_response}
 \end{figure}
 
-Para mudanças do tipo degrau, obtemos o tempo de assentamento de
+Para mudanças do tipo degrau, obtém-se o tempo de assentamento de
 aproximadamente um minuto.
 
 
-Para estudar a robustez do sistema utilizamos o código anterior e multiplicamos $Y/R$ pelo filtro $F_e$ e obtivemos o seguinte gráfico:
+Para estudar a robustez do sistema foi utilizado o código anterior e multiplicamos $Y/R$ pelo filtro $F_e$ e obtivemos o seguinte gráfico:
 
 
 \begin{figure} [H]
@@ -1659,126 +1664,39 @@ A escolha entre as duas estratégias deve considerar os requisitos específicos 
 
 Ambas as abordagens demonstraram ser viáveis para o controle de processos químicos com atrasos significativos, contribuindo para o desenvolvimento de estratégias de controle mais eficazes em aplicações industriais.
 
+\newpage
+
+\section{Referências}
+
+\begin{thebibliography}{9}
+
+\bibitem{ogata2010}
+Ogata, K. \textit{Engenharia de Controle Moderno}. 5ª edição. São Paulo: Pearson Prentice Hall, 2010.
+
+\bibitem{dorf2013}
+Dorf, R. C.; Bishop, R. H. \textit{Sistemas de Controle Modernos}. 12ª edição. Rio de Janeiro: LTC, 2013.
+
+\bibitem{seborg2010}
+Seborg, D. E.; Edgar, T. F.; Mellichamp, D. A.; Doyle III, F. J. \textit{Process Dynamics and Control}. 4ª edição. Hoboken: John Wiley \& Sons, 2016.
+
+\bibitem{astrom2006}
+Åström, K. J.; Murray, R. M. \textit{Feedback Systems: An Introduction for Scientists and Engineers}. Princeton: Princeton University Press, 2008.
+
+\bibitem{franklin2015}
+Franklin, G. F.; Powell, J. D.; Emami-Naeini, A. \textit{Feedback Control of Dynamic Systems}. 7ª edição. Boston: Pearson, 2015.
+
+\bibitem{smith1957}
+Smith, O. J. M. \textit{Closer Control of Loops with Dead Time}. Chemical Engineering Progress, vol. 53, no. 5, pp. 217-219, 1957.
+
+\bibitem{morari1989}
+Morari, M.; Zafiriou, E. \textit{Robust Process Control}. Englewood Cliffs: Prentice Hall, 1989.
+
+\bibitem{matlab2024}
+MathWorks. \textit{MATLAB Control System Toolbox User's Guide}. Natick: The MathWorks Inc., 2024.
+
+\bibitem{octave2023}
+GNU Octave. \textit{GNU Octave Control Package Documentation}. Versão 4.1.2, 2023. Disponível em: \texttt{https://octave.sourceforge.io/control/}.
+
+\end{thebibliography}
+
 \end{document}
-
-</final_file_content>
-
-IMPORTANT: For any future changes to this file, use the final_file_content shown above as your reference. This content reflects the current state of the file, including any auto-formatting (e.g., if you used single quotes but the formatter converted them to double quotes). Always base your SEARCH/REPLACE operations on this final version to ensure accuracy.
-
-<environment_details>
-# VSCode Visible Files
-main.tex
-
-# VSCode Open Tabs
-Trabalho 1 Sistemas de Controle/main.tex
-Trabalho 2 Sistemas de Controle/main.tex
-figure5.txt
-figure6.txt
-figure7.txt
-image10.txt
-image11.txt
-Imagens/BrasaoUFSC.txt
-Imagens/q1.txt
-Imagens/q1p.txt
-Imagens/q11.txt
-Imagens/q11p.txt
-Imagens/q12.txt
-Imagens/q13.txt
-Imagens/Reator.txt
-Trabalho 1 Sistemas de Controle/diagramablocos.txt
-Trabalho 1 Sistemas de Controle/diagramapolosezeros.txt
-Trabalho 1 Sistemas de Controle/figura8_1.txt
-Trabalho 1 Sistemas de Controle/figura8.txt
-Trabalho 1 Sistemas de Controle/figura9.txt
-Trabalho 1 Sistemas de Controle/figura10.txt
-Trabalho 1 Sistemas de Controle/figura11.txt
-Trabalho 1 Sistemas de Controle/figura12.txt
-Trabalho 1 Sistemas de Controle/figura13.txt
-Trabalho 1 Sistemas de Controle/figura14.txt
-Trabalho 1 Sistemas de Controle/figura15.txt
-Trabalho 1 Sistemas de Controle/figura16.txt
-Trabalho 1 Sistemas de Controle/figurats.txt
-Trabalho 1 Sistemas de Controle/FiguraTsnovo.txt
-Trabalho 1 Sistemas de Controle/image.txt
-Trabalho 1 Sistemas de Controle/naolinear.txt
-Trabalho 1 Sistemas de Controle/respostaaosistemanaolinear.txt
-Trabalho 1 Sistemas de Controle/respostacomcontrolador.txt
-Trabalho 1 Sistemas de Controle/respostacompequenasvariaçoes.txt
-Trabalho 1 Sistemas de Controle/Ts01.txt
-Trabalho 1 Sistemas de Controle/Imagens/bodey.txt
-Trabalho 1 Sistemas de Controle/Imagens/BrasaoUFSC.txt
-Trabalho 1 Sistemas de Controle/Imagens/CAFxUxCA.txt
-Trabalho 1 Sistemas de Controle/Imagens/CAFxUxCB.txt
-Trabalho 1 Sistemas de Controle/Imagens/Grafico com mf na entrada.txt
-Trabalho 1 Sistemas de Controle/Imagens/pertubaçao.txt
-Trabalho 1 Sistemas de Controle/Imagens/polo e zero com filtro.txt
-Trabalho 1 Sistemas de Controle/Imagens/polo e zero sem filtro.txt
-Trabalho 1 Sistemas de Controle/Imagens/Q2.txt
-Trabalho 1 Sistemas de Controle/Imagens/Q2Simu.txt
-Trabalho 1 Sistemas de Controle/Imagens/Q3Simu.txt
-Trabalho 1 Sistemas de Controle/Imagens/Q3SimuS.txt
-Trabalho 1 Sistemas de Controle/Imagens/Reator.txt
-Trabalho 1 Sistemas de Controle/Imagens/resposta mf com degrau.txt
-Trabalho 1 Sistemas de Controle/Imagens/resposta.txt
-Trabalho 2 Sistemas de Controle/image.txt
-Trabalho 2 Sistemas de Controle/image1.txt
-Trabalho 2 Sistemas de Controle/image2.txt
-Trabalho 2 Sistemas de Controle/image3.txt
-Trabalho 2 Sistemas de Controle/image4.txt
-Trabalho 2 Sistemas de Controle/image5.txt
-Trabalho 2 Sistemas de Controle/image6.txt
-Trabalho 2 Sistemas de Controle/image7.txt
-Trabalho 2 Sistemas de Controle/image8.txt
-Trabalho 2 Sistemas de Controle/image9.txt
-Trabalho 2 Sistemas de Controle/image10.txt
-Trabalho 2 Sistemas de Controle/image11.txt
-Trabalho 2 Sistemas de Controle/image12.txt
-Trabalho 2 Sistemas de Controle/image13.txt
-Trabalho 2 Sistemas de Controle/image14.txt
-Trabalho 2 Sistemas de Controle/image15.txt
-Trabalho 2 Sistemas de Controle/image16.txt
-Trabalho 2 Sistemas de Controle/image17.txt
-Trabalho 2 Sistemas de Controle/image18.txt
-Trabalho 2 Sistemas de Controle/image19.txt
-convert_images.py
-Trabalho 2 Sistemas de Controle/Imagens/1B/1BbodeYQAutoral.txt
-Trabalho-Reator.txt
-apresentacao.tex
-apresentacao_introdutoria.tex
-perguntas.md
-apresentacao_final.tex
-figure8.txt
-main.out
-codigo_matlab.m
-codigo_adicional.m
-executar_analises.m
-run_all.m
-Relatorio-Tecnico-Unificado.tex
-main.tex
-figure9.txt
-figure10.txt
-image1.txt
-image2.txt
-image8.txt
-image9.txt
-image3.txt
-image4.txt
-image5.txt
-image6.txt
-image7.txt
-
-# Actively Running Terminals
-## Original command: `pdflatex main.tex`
-## Original command: `pdflatex main.tex`
-## Original command: `pdflatex main.tex`
-## Original command: `pdflatex main.tex`
-
-# Current Time
-07/07/2025, 7:33:01 PM (America/Sao_Paulo, UTC-3:00)
-
-# Context Window Usage
-299.837 / 1.048,576K tokens used (29%)
-
-# Current Mode
-ACT MODE
-</environment_details>

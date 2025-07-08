@@ -1,0 +1,31 @@
+\babel@toc {brazil}{}\relax 
+\contentsline {section}{\numberline {1}Introdução e Contextualização do Problema}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}O Desafio do Controle de Reatores Químicos}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Mapa Metodológico: Uma Jornada de Complexidade Crescente}{4}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Desenvolvimento}{5}{section.2}%
+\contentsline {section}{\numberline {3}Parte 1 - Análise do Sistema e Projeto por Alocação}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Questão 1: Análise do Funcionamento em Equilíbrio}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Questão 2: Estudo do Comportamento Dinâmico}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Questão 3: Linearização do Sistema}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Questão 4: Funções de Transferência}{6}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Questão 5: Simulação e Comparação}{7}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Questão 6: Projeto do Controle PI}{9}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Questão 7: Análise das Respostas em Malha Fechada}{10}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Questão 8: Simulação do Sistema Não Linear}{10}{subsection.3.8}%
+\contentsline {subsection}{\numberline {3.9}Questão 9: Discretização do Controle}{13}{subsection.3.9}%
+\contentsline {section}{\numberline {4}Parte 2 - Análise e Projeto por Lugar das Raízes}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Questão 1: Projeto por Lugar das Raízes}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Questão 2: Simulação do Sistema Não Linear}{14}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Questão 3: Controle com Sensor Adicional}{18}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Questão 4: Simulação com Cenário Realista}{18}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Parte 3 - Sistema com Atraso de Medição de Concentração}{19}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Questão 1: Projeto do Preditor de Smith}{19}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Questão 2: Simulação do Comportamento Dinâmico}{27}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Questão 3: Preditor de Smith Filtrado}{36}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Análise Gráfica das Simulações}{44}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Conclusão Geral do Trabalho}{51}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Síntese dos Resultados das Três Partes}{52}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Comparação entre Estratégias}{52}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Implicações Práticas}{52}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Considerações Finais}{52}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Referências}{53}{section.7}%
