@@ -21,11 +21,11 @@
 \contentsline {section}{\numberline {5}Parte 3 - Sistema com Atraso de Medição de Concentração}{19}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Questão 1: Projeto do Preditor de Smith}{19}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Questão 2: Simulação do Comportamento Dinâmico}{27}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Questão 3: Preditor de Smith Filtrado}{36}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Análise Gráfica das Simulações}{44}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Conclusão Geral do Trabalho}{51}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Síntese dos Resultados das Três Partes}{52}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Comparação entre Estratégias}{52}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Implicações Práticas}{52}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Considerações Finais}{52}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Referências}{53}{section.7}%
+\contentsline {subsection}{\numberline {5.3}Questão 3: Preditor de Smith Filtrado}{38}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Análise Gráfica das Simulações}{46}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Conclusão Geral do Trabalho}{53}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Síntese dos Resultados das Três Partes}{54}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Comparação entre Estratégias}{54}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Implicações Práticas}{54}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Considerações Finais}{54}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Referências}{55}{section.7}%
