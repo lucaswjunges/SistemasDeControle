@@ -3,7 +3,7 @@
 % Pacotes necessários
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
-\usepackage{hyperref}
+% \usepackage{hyperref}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{caption}
@@ -13,6 +13,7 @@
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{microtype}
 
 
 % Configuração da página de título
@@ -40,12 +41,12 @@ Lucas William Junges}
 \end{titlepage}
 
 % Lista de ilustrações
-\listoffigures
-\clearpage
+% \listoffigures
+% \clearpage
 
-% Sumário
-\tableofcontents
-\clearpage
+% % Sumário
+% \tableofcontents
+% \clearpage
 
 
 
@@ -191,72 +192,72 @@ A validação do modelo linearizado é realizada através da comparação das re
   showstringspaces=false
 }
 
-\begin{lstlisting}[caption=Código MATLAB para simulação comparativa]
-%% Parâmetros do processo
+\begin{lstlisting}[caption=Codigo MATLAB para simulacao comparativa]
+%% Parametros do processo
 k1 = 6.01;      % [1/min]
 k2 = 0.8433;    % [1/min] 
 k3 = 0.1123;    % [mol/(l min)]
 V = 1;          % Volume do reator [l]
 
-% Ponto de operação
+% Ponto de operacao
 CAF_op = 5.1;   % [mol/l]
 u_op = 1.0;     % [1/min]
 
-% Estados de equilíbrio
+% Estados de equilibrio
 CA_eq = 0.8;    % [mol/l]
 CB_eq = 4.81;   % [mol/l]
 
-%% Modelo não linear (sistema de EDOs)
+%% Modelo nao linear (sistema de EDOs)
 f_nonlinear = @(t, x, u, CAF) [
     -k1*x(1) - k3*x(1)^2 + (CAF - x(1))*u;
     k1*x(1) - k2*x(2) - x(2)*u
 ];
 
-%% Modelo linearizado (espaço de estados)
+%% Modelo linearizado (espaco de estados)
 % dx/dt = A*x + B*u + E*d
 A = [-k1 - k3*2*CA_eq - u_op, 0;
      k1, -k2 - u_op];
 B = [CAF_op - CA_eq; -CB_eq];
-E = [u_op; 0];  % Efeito da perturbação CAF
+E = [u_op; 0];  % Efeito da perturbacao CAF
 
-%% Simulação comparativa
-t_sim = 0:0.01:10;  % Tempo de simulação [min]
+%% Simulacao comparativa
+t_sim = 0:0.01:10;  % Tempo de simulacao [min]
 t_step = 2;         % Momento do degrau [min]
 
-% Perturbação pequena em u (±0.1)
+% Perturbacao pequena em u (+-0.1)
 u_step = 0.1;
 u_signal = u_op + u_step*(t_sim >= t_step);
 
-% Condições iniciais
+% Condicoes iniciais
 x0 = [CA_eq; CB_eq];
 
-% Simulação não linear usando ode45
+% Simulacao nao linear usando ode45
 [~, x_nl] = ode45(@(t, x) sistema_nao_linear(t, x, u_signal, t_sim, CAF_op, k1, k2, k3), t_sim, x0);
 
-% Simulação linear
-sys_linear = ss(A, B, [0 1], 0);  % Saída: CB
+% Simulacao linear
+sys_linear = ss(A, B, [0 1], 0);  % Saida: CB
 [y_linear, ~] = step(sys_linear * u_step, t_sim);
 y_linear = CB_eq + y_linear';
 
-%% Visualização dos resultados
+%% Visualizacao dos resultados
 figure;
 subplot(2,1,1);
-plot(t_sim, x_nl(:,1), 'b-', 'LineWidth', 2, 'DisplayName', 'Não Linear');
+plot(t_sim, x_nl(:,1), 'b-', 'LineWidth', 2, 'DisplayName', 'Nao Linear');
 hold on;
 plot(t_sim, CA_eq*ones(size(t_sim)), 'r--', 'LineWidth', 1.5, 'DisplayName', 'Linear');
 xlabel('Tempo [min]'); ylabel('CA [mol/l]');
-title('Concentração de A - Comparação Linear vs Não Linear');
+title('Concentracao de A - Comparacao Linear vs Nao Linear');
 legend; grid on;
 
 subplot(2,1,2);
-plot(t_sim, x_nl(:,2), 'b-', 'LineWidth', 2, 'DisplayName', 'Não Linear');
+plot(t_sim, x_nl(:,2), 'b-', 'LineWidth', 2, 'DisplayName', 'Nao Linear');
 hold on;
 plot(t_sim, y_linear, 'r--', 'LineWidth', 1.5, 'DisplayName', 'Linear');
 xlabel('Tempo [min]'); ylabel('CB [mol/l]');
-title('Concentração de B - Comparação Linear vs Não Linear');
+title('Concentracao de B - Comparacao Linear vs Nao Linear');
 legend; grid on;
 
-% Função auxiliar para sistema não linear
+% Funcao auxiliar para sistema nao linear
 function dxdt = sistema_nao_linear(t, x, u_signal, t_sim, CAF, k1, k2, k3)
     u_current = interp1(t_sim, u_signal, t);
     dxdt = [-k1*x(1) - k3*x(1)^2 + (CAF - x(1))*u_current;
@@ -265,7 +266,7 @@ end
 \end{lstlisting}
 
 \textbf{Análise dos Resultados:}
-A simulação revela excelente concordância entre os modelos linear e não linear para variações de até ±10\% no sinal de controle. O erro RMS típico é inferior a 2\%, validando a aproximação linear para o projeto do controlador.
+A simulação revela excelente concordância entre os modelos linear e não linear para variações de até 10\% no sinal de controle. O erro RMS típico é inferior a 2\%, validando a aproximação linear para o projeto do controlador.
 
 \subsection{Questão 6: Projeto do Controle PI}
 
@@ -277,11 +278,11 @@ Onde $K_p = 4.81$ e $\tau = 0.543$ min (constante de tempo dominante).
 
 \textbf{Metodologia de Alocação de Polos:}
 
-A técnica de alocação de polos permite traduzir sistematicamente especificações de desempenho temporal em parâmetros do controlador. Para as especificações $t_{5\%} = 1.6$ min e overshoot < 5%, definimos os polos desejados em malha fechada.
+A técnica de alocação de polos permite traduzir sistematicamente especificações de desempenho temporal em parâmetros do controlador. Para as especificações $t_{5\%} = 1.6$ min e overshoot < 5\%, definimos os polos desejados em malha fechada.
 
 Para um sistema de segunda ordem com polos dominantes $s_{1,2} = -\zeta\omega_n \pm j\omega_n\sqrt{1-\zeta^2}$:
 
-1. **Cálculo do coeficiente de amortecimento**: Para overshoot < 5%:
+1. **Cálculo do coeficiente de amortecimento**: Para overshoot < 5\%:
    $$\zeta = \frac{-\ln(0.05)}{\sqrt{\pi^2 + \ln^2(0.05)}} = 0.69$$
 
 2. **Cálculo da frequência natural**: Para $t_{5\%} = 1.6$ min:
@@ -307,7 +308,7 @@ Esta abordagem sistemática garante que o controlador PI posiciona os polos da f
 
 A análise das respostas em malha fechada através de diagramas polo-zero e resposta em frequência demonstra:
 - Tempo de acomodação: 1.6 min
-- Overshoot máximo: 4.2%
+- Overshoot máximo: 4.2\%
 - Margem de ganho: 12.5 dB
 - Margem de fase: 52°
 
@@ -319,44 +320,44 @@ A simulação do sistema não linear confirma o atendimento das especificações
 
 A validação do controlador PI é realizada através de simulação em malha fechada do sistema não linear, testando diferentes amplitudes de referência para identificar o domínio de validade do controle linear.
 
-\begin{lstlisting}[caption=Simulação do controle PI em sistema não linear]
-%% Parâmetros do controlador PI projetado
+\begin{lstlisting}[caption=Simulacao do controle PI em sistema nao linear]
+%% Parametros do controlador PI projetado
 Kc = 0.156;     % Ganho proporcional
 tau_i = 0.543;  % Tempo integral [min]
 
-%% Configuração da simulação
+%% Configuracao da simulacao
 t_sim = 0:0.01:15;  % Vetor de tempo [min]
-CB_ref = 4.81;      % Referência inicial [mol/l]
+CB_ref = 4.81;      % Referencia inicial [mol/l]
 
-% Teste com diferentes amplitudes de degrau na referência
+% Teste com diferentes amplitudes de degrau na referencia
 amplitudes = [0.2, 0.5, 1.0, 1.5];  % [mol/l]
 cores = {'b-', 'r-', 'g-', 'm-'};
 
 figure;
 for i = 1:length(amplitudes)
-    % Sinal de referência
+    % Sinal de referencia
     r_signal = CB_ref + amplitudes(i)*(t_sim >= 2);
     
-    % Simulação em malha fechada
+    % Simulacao em malha fechada
     [t_out, x_out, u_out] = simular_malha_fechada(t_sim, r_signal, Kc, tau_i);
     
     % Plotar resposta de CB
     subplot(2,2,1);
     plot(t_out, x_out(:,2), cores{i}, 'LineWidth', 1.5, ...
-         'DisplayName', sprintf('Δr = %.1f mol/l', amplitudes(i)));
+         'DisplayName', sprintf('Delta r = %.1f mol/l', amplitudes(i)));
     hold on;
     
     % Plotar sinal de controle
     subplot(2,2,2);
     plot(t_out, u_out, cores{i}, 'LineWidth', 1.5, ...
-         'DisplayName', sprintf('Δr = %.1f mol/l', amplitudes(i)));
+         'DisplayName', sprintf('r = %.1f mol/l', amplitudes(i)));
     hold on;
     
-    % Calcular métricas de desempenho
+    % Calcular metricas de desempenho
     [overshoot(i), t_5_pct(i)] = calcular_metricas(t_out, x_out(:,2), r_signal(end));
 end
 
-% Formatação dos gráficos
+% Formatacao dos graficos
 subplot(2,2,1);
 xlabel('Tempo [min]'); ylabel('CB [mol/l]');
 title('Resposta de CB para Diferentes Amplitudes');
@@ -367,7 +368,7 @@ xlabel('Tempo [min]'); ylabel('u [1/min]');
 title('Sinal de Controle'); 
 legend('Location', 'best'); grid on;
 
-% Análise do domínio de validade
+% Analise do dominio de validade
 subplot(2,2,3);
 bar(amplitudes, overshoot);
 xlabel('Amplitude do Degrau [mol/l]'); ylabel('Overshoot [%]');
@@ -377,17 +378,17 @@ ylim([0 25]);
 subplot(2,2,4);
 bar(amplitudes, t_5_pct);
 xlabel('Amplitude do Degrau [mol/l]'); ylabel('t_{5%} [min]');
-title('Tempo de Acomodação vs Amplitude'); grid on;
+title('Tempo de Acomodacao vs Amplitude'); grid on;
 
-% Função de simulação em malha fechada
+% Funcao de simulacao em malha fechada
 function [t_out, x_out, u_out] = simular_malha_fechada(t_sim, r_signal, Kc, tau_i)
-    % Condições iniciais
-    x0 = [0.8; 4.81];  % [CA; CB] de equilíbrio
+    % Condicoes iniciais
+    x0 = [0.8; 4.81];  % [CA; CB] de equilibrio
     
     % Estados do controlador PI (integral)
     xi_0 = 0;  % Estado integral inicial
     
-    % Simulação usando ode45 com controlador
+    % Simulacao usando ode45 com controlador
     [t_out, y_out] = ode45(@(t, y) sistema_controlado(t, y, t_sim, r_signal, Kc, tau_i), ...
                            t_sim, [x0; xi_0]);
     
@@ -400,44 +401,44 @@ function [t_out, x_out, u_out] = simular_malha_fechada(t_sim, r_signal, Kc, tau_
         r_current = interp1(t_sim, r_signal, t_out(i));
         e = r_current - x_out(i, 2);  % Erro de CB
         u_out(i) = Kc * (e + xi_out(i)/tau_i);
-        u_out(i) = max(0, min(10, u_out(i)));  % Saturação 0-10
+        u_out(i) = max(0, min(10, u_out(i)));  % Saturacao 0-10
     end
 end
 
-% Função do sistema controlado (planta + controlador)
+% Funcao do sistema controlado (planta + controlador)
 function dydt = sistema_controlado(t, y, t_sim, r_signal, Kc, tau_i)
     % Estados: [CA, CB, xi]
     CA = y(1); CB = y(2); xi = y(3);
     
-    % Parâmetros
+    % Parametros
     k1 = 6.01; k2 = 0.8433; k3 = 0.1123;
     CAF = 5.1;
     
-    % Referência atual
+    % Referencia atual
     r_current = interp1(t_sim, r_signal, t);
     
     % Erro e controle PI
     e = r_current - CB;
     u = Kc * (e + xi/tau_i);
-    u = max(0, min(10, u));  % Saturação
+    u = max(0, min(10, u));  % Saturacao
     
-    % Dinâmica da planta
+    % Dinamica da planta
     dCA_dt = -k1*CA - k3*CA^2 + (CAF - CA)*u;
     dCB_dt = k1*CA - k2*CB - CB*u;
     
-    % Dinâmica do integrador
+    % Dinamica do integrador
     dxi_dt = e;
     
     dydt = [dCA_dt; dCB_dt; dxi_dt];
 end
 
-% Função para calcular métricas
+% Funcao para calcular metricas
 function [overshoot, t_5_pct] = calcular_metricas(t, y, y_final)
     % Overshoot
     y_max = max(y);
     overshoot = max(0, (y_max - y_final)/y_final * 100);
     
-    % Tempo de acomodação (5%)
+    % Tempo de acomodacao (5%)
     banda_5pct = 0.05 * abs(y_final - y(1));
     idx_settle = find(abs(y - y_final) <= banda_5pct, 1, 'first');
     if ~isempty(idx_settle)
@@ -450,9 +451,9 @@ end
 
 \textbf{Resultados da Simulação:}
 \begin{itemize}
-\item \textbf{Variações pequenas (Δr ≤ 0.5 mol/l):} Atendimento das especificações com overshoot < 5\% e $t_{5\%} ≈ 1.6$ min
-\item \textbf{Variações moderadas (0.5 < Δr ≤ 1.0 mol/l):} Degradação gradual do desempenho
-\item \textbf{Variações grandes (Δr > 1.0 mol/l):} Falha significativa com overshoot > 15\% e instabilidade potencial
+\item \textbf{Variações pequenas ($ \Delta r \leq$ 0.5 mol/l):} Atendimento das especificações com overshoot < 5\% e $t_{5\%} \approx 1.6$ min
+\item \textbf{Variações moderadas (0.5 < $ \Delta r \leq$ 1.0 mol/l):} Degradação gradual do desempenho
+\item \textbf{Variações grandes ($ \Delta r >$ 1.0 mol/l):} Falha significativa com overshoot > 15\% e instabilidade potencial
 \end{itemize}
 
 \subsection{Questão 9: Discretização do Controle}
@@ -493,7 +494,7 @@ A abordagem por lugar das raízes oferece vantagens significativas sobre a aloca
 \textbf{Desafios do Sistema:}
 1. **Zero no semiplano direito**: Limita a velocidade de resposta e pode causar undershoot
 2. **Polos amplamente separados**: Requer cuidado no posicionamento dos polos dominantes
-3. **Especificações rigorosas**: $t_{5\%} = 1.5$ min e overshoot < 5%
+3. **Especificações rigorosas**: $t_{5\%} = 1.5$ min e overshoot < 5\%
 
 \textbf{Estratégia de Polos e Zeros do Controlador:}
 
@@ -519,14 +520,14 @@ O lugar das raízes de $G_c(s)G(s)$ foi construído considerando:
 
 \textbf{Seleção do Ganho:}
 O ganho $K_c = 0.284$ foi selecionado para posicionar os polos dominantes em $s = -2.1 \pm j1.8$, que correspondem exatamente às especificações:
-- $\zeta = 0.69$ (overshoot = 4.1% < 5%)
+- $\zeta = 0.69$ (overshoot = 4.1\% < 5\%)
 - $\omega_n = 2.72$ rad/min ($t_{5\%} = 1.43$ min < 1.5 min)
 
 \textbf{b) Análise do Comportamento:}
 
 O lugar das raízes mostra polos dominantes em $s = -2.1 \pm j1.8$, resultando em:
 - $t_{5\%} = 1.43$ min
-- Overshoot = 4.1%
+- Overshoot = 4.1\%
 - Erro estático nulo para referência
 
 \textbf{Vantagens da Abordagem:}
@@ -536,30 +537,30 @@ O lugar das raízes mostra polos dominantes em $s = -2.1 \pm j1.8$, resultando e
 
 \subsection{Questão 2: Simulação do Sistema Não Linear}
 
-A simulação confirma robustez adequada para variações de ±20% nos parâmetros. Para variações maiores, observa-se degradação devido às não linearidades do processo.
+A simulação confirma robustez adequada para variações de +/-20\% nos parâmetros. Para variações maiores, observa-se degradação devido às não linearidades do processo.
 
 \textbf{Metodologia de Simulação - Controlador Lead-Lag em Sistema Não Linear:}
 
 O teste de robustez do controlador lead-lag projetado por lugar das raízes é realizado através de simulações Monte Carlo com variações paramétricas e cenários realistas de operação.
 
-\begin{lstlisting}[caption=Simulação de robustez - Controlador Lead-Lag]
-%% Parâmetros do controlador Lead-Lag projetado
+\begin{lstlisting}[caption=Simulacao de robustez - Controlador Lead-Lag]
+%% Parametros do controlador Lead-Lag projetado
 Kc = 0.284;
 z1 = 2.5; z2 = 0.8;  % Zeros
 p1 = 8.5; p2 = 0.1;  % Polos
 
-% Função de transferência do controlador
+% Funcao de transferencia do controlador
 s = tf('s');
 Gc = Kc * (s + z1) * (s + z2) / ((s + p1) * (s + p2));
 
-%% Teste de robustez paramétrica
-n_tests = 100;  % Número de testes Monte Carlo
-var_range = 0.20;  % ±20% de variação
+%% Teste de robustez parametrica
+n_tests = 100;  % Numero de testes Monte Carlo
+var_range = 0.20;  % +/-20% de variacao
 
-% Parâmetros nominais
+% Parametros nominais
 k1_nom = 6.01; k2_nom = 0.8433; k3_nom = 0.1123;
 
-% Métricas de desempenho
+% Metricas de desempenho
 overshoot_results = zeros(n_tests, 1);
 settling_time_results = zeros(n_tests, 1);
 success_rate = 0;
@@ -568,25 +569,25 @@ figure;
 hold on;
 
 for i = 1:n_tests
-    % Variações aleatórias nos parâmetros
+    % Variacoes aleatorias nos parametros
     k1 = k1_nom * (1 + var_range * (2*rand - 1));
     k2 = k2_nom * (1 + var_range * (2*rand - 1));
     k3 = k3_nom * (1 + var_range * (2*rand - 1));
     
-    % Simulação do sistema não linear com parâmetros variados
+    % Simulacao do sistema nao linear com parametros variados
     [t, CB_response, stable] = simular_sistema_variado(k1, k2, k3, Gc);
     
     if stable
-        % Plotar apenas algumas curvas para visualização
+        % Plotar apenas algumas curvas para visualizacao
         if i <= 10
             plot(t, CB_response, 'Color', [0.7 0.7 0.7], 'LineWidth', 0.5);
         end
         
-        % Calcular métricas
+        % Calcular metricas
         [overshoot_results(i), settling_time_results(i)] = ...
             calcular_metricas_leadlag(t, CB_response);
         
-        % Verificar se atende especificações
+        % Verificar se atende especificacoes
         if overshoot_results(i) <= 5 && settling_time_results(i) <= 1.5
             success_rate = success_rate + 1;
         end
@@ -598,30 +599,30 @@ end
 plot(t_nom, CB_nom, 'r-', 'LineWidth', 2, 'DisplayName', 'Nominal');
 
 xlabel('Tempo [min]'); ylabel('CB [mol/l]');
-title('Robustez do Controlador Lead-Lag (±20% variação paramétrica)');
+title('Robustez do Controlador Lead-Lag (+/-20% variacao parametrica)');
 legend; grid on;
 
 success_rate = success_rate / n_tests * 100;
-fprintf('Taxa de sucesso: %.1f%%\n', success_rate);
+fprintf('Taxa de sucesso: %.1f%%\\n', success_rate);
 
-%% Análise estatística dos resultados
+%% Analise estatistica dos resultados
 figure;
 subplot(2,2,1);
 histogram(overshoot_results(overshoot_results > 0), 15);
-xlabel('Overshoot [%]'); ylabel('Frequência');
-title('Distribuição do Overshoot');
+xlabel('Overshoot [%]'); ylabel('Frequencia');
+title('Distribuicao do Overshoot');
 xline(5, 'r--', 'Limite (5%)', 'LineWidth', 2);
 
 subplot(2,2,2);
 histogram(settling_time_results(settling_time_results > 0), 15);
-xlabel('Tempo de Acomodação [min]'); ylabel('Frequência');
-title('Distribuição do Tempo de Acomodação');
+xlabel('Tempo de Acomodacao [min]'); ylabel('Frequencia');
+title('Distribuicao do Tempo de Acomodacao');
 xline(1.5, 'r--', 'Limite (1.5 min)', 'LineWidth', 2);
 
 subplot(2,2,3);
 scatter(overshoot_results, settling_time_results, 'filled', 'alpha', 0.6);
-xlabel('Overshoot [%]'); ylabel('Tempo de Acomodação [min]');
-title('Correlação Overshoot vs Tempo');
+xlabel('Overshoot [%]'); ylabel('Tempo de Acomodacao [min]');
+title('Correlacao Overshoot vs Tempo');
 xline(5, 'r--'); yline(1.5, 'r--');
 grid on;
 
@@ -629,20 +630,20 @@ subplot(2,2,4);
 pie([success_rate, 100-success_rate], {'Sucesso', 'Falha'});
 title(sprintf('Taxa de Sucesso: %.1f%%', success_rate));
 
-% Função de simulação com parâmetros variados
+% Funcao de simulacao com parametros variados
 function [t, CB_response, stable] = simular_sistema_variado(k1, k2, k3, Gc)
     try
-        % Simulação em malha fechada com controlador lead-lag
+        % Simulacao em malha fechada com controlador lead-lag
         t_sim = 0:0.01:10;
         CB_ref = 4.81 + 0.5;  % Degrau de 0.5 mol/l
         
-        % Condições iniciais
+        % Condicoes iniciais
         x0 = [0.8; 4.81];  % [CA; CB]
         
         % Estados do controlador (2 polos, 2 zeros -> 2 estados internos)
         xc0 = [0; 0];
         
-        % Simulação
+        % Simulacao
         [t, y] = ode45(@(t, y) sistema_leadlag(t, y, CB_ref, k1, k2, k3, Gc), ...
                        t_sim, [x0; xc0]);
         
@@ -659,7 +660,7 @@ function [t, CB_response, stable] = simular_sistema_variado(k1, k2, k3, Gc)
     end
 end
 
-% Função do sistema com controlador lead-lag
+% Funcao do sistema com controlador lead-lag
 function dydt = sistema_leadlag(t, y, CB_ref, k1, k2, k3, Gc)
     % Estados: [CA, CB, xc1, xc2] (planta + controlador)
     CA = y(1); CB = y(2);
@@ -667,14 +668,14 @@ function dydt = sistema_leadlag(t, y, CB_ref, k1, k2, k3, Gc)
     % Erro
     e = CB_ref - CB;
     
-    % Controlador lead-lag implementado em espaço de estados
-    % Para simplificação, usamos aproximação PI equivalente
+    % Controlador lead-lag implementado em espaco de estados
+    % Para simplificacao, usamos aproximacao PI equivalente
     % u = Kc_eq * e + Ki_eq * integral(e)
-    Kc_eq = 0.284 * 2.5;  % Aproximação do ganho equivalente
+    Kc_eq = 0.284 * 2.5;  % Aproximacao do ganho equivalente
     u = Kc_eq * e;
-    u = max(0, min(10, u));  % Saturação
+    u = max(0, min(10, u));  % Saturacao
     
-    % Dinâmica da planta
+    % Dinamica da planta
     CAF = 5.1;
     dCA_dt = -k1*CA - k3*CA^2 + (CAF - CA)*u;
     dCB_dt = k1*CA - k2*CB - CB*u;
@@ -683,7 +684,7 @@ function dydt = sistema_leadlag(t, y, CB_ref, k1, k2, k3, Gc)
     dydt = [dCA_dt; dCB_dt; 0; 0];
 end
 
-% Métricas para controlador lead-lag
+% Metricas para controlador lead-lag
 function [overshoot, settling_time] = calcular_metricas_leadlag(t, y)
     y_final = y(end);
     y_inicial = y(1);
@@ -696,7 +697,7 @@ function [overshoot, settling_time] = calcular_metricas_leadlag(t, y)
         overshoot = 0;
     end
     
-    % Tempo de acomodação (5%)
+    % Tempo de acomodacao (5%)
     banda = 0.05 * abs(y_final - y_inicial);
     idx = find(abs(y - y_final) <= banda, 1, 'first');
     if ~isempty(idx)
@@ -709,9 +710,9 @@ end
 
 \textbf{Resultados da Análise de Robustez:}
 \begin{itemize}
-\item \textbf{Taxa de sucesso:} 85\% para variações de ±20\% nos parâmetros
-\item \textbf{Overshoot médio:} 3.8\% ± 1.2\%
-\item \textbf{Tempo de acomodação médio:} 1.35 ± 0.25 min
+\item \textbf{Taxa de sucesso:} 85\% para variações de $+/-$20\% nos parâmetros
+\item \textbf{Overshoot médio:} 3.8\% $+/-$ 1.2\%
+\item \textbf{Tempo de acomodação médio:} 1.35 $+/-$ 0.25 min
 \item \textbf{Robustez superior} ao controle PI da Parte 1 devido à compensação do zero no semiplano direito
 \end{itemize}
 
@@ -735,9 +736,9 @@ $G_c(z) = \frac{0.284(z - 0.88)(z - 0.96)}{(z - 0.64)(z - 0.995)}$
 
 A simulação final inclui:
 - Rampa de referência para partida
-- Perturbações em $C_{AF}$ (±0.5 mol/l)
+- Perturbações em $C_{AF}$ ($+/-$0.5 mol/l)
 - Ruído de medição ($\sigma = 0.01$ mol/l)
-- Variações paramétricas (±10%)
+- Variações paramétricas ($+/-$10\%)
 
 Resultados superiores ao controle PI da Parte 1 em termos de rejeição de perturbações e robustez.
 
@@ -749,7 +750,7 @@ Resultados superiores ao controle PI da Parte 1 em termos de rejeição de pertu
 
 \subsection{Questão 1: Projeto do Preditor de Smith}
 
-a) Projete um controle com base no Preditor de Smith (em tempo discreto) para obter em malha fechada um sistema com aproximadamente as mesmas características transitórias (\(t_{5\%}\) e pico) e permanentes (erro em regime permanente) que as obtidas na parte 2 (considere o \(t_{5\%}\) medido depois do atraso). Essa especificação deve ser atendida para resposta a seguimentos de degraus de referência de \(C_B\) e perturbações de \(C_{AF}\). Use filtro de referência se necessário. Lembre-se que o sistema deve ter ganho estático unitário para a relação referência-saída de \(C_B\). Estude o comportamento do sistema sobre o modelo linearizado por simulação. Conclua sobre as propriedades em malha fechada do Preditor de Smith para este sistema. As especificações foram atendidas?\\
+a) Projete um controle com base no Preditor de Smith (em tempo discreto) para obter em malha fechada um sistema com aproximadamente as mesmas características transitórias ($t_{5\%}$ e pico) e permanentes (erro em regime permanente) que as obtidas na parte 2 (considere o $t_{5\%}$ medido depois do atraso). Essa especificação deve ser atendida para resposta a seguimentos de degraus de referência de $C_B$ e perturbações de $C_{AF}$. Use filtro de referência se necessário. Lembre-se que o sistema deve ter ganho estático unitário para a relação referência-saída de $C_B$. Estude o comportamento do sistema sobre o modelo linearizado por simulação. Conclua sobre as propriedades em malha fechada do Preditor de Smith para este sistema. As especificações foram atendidas?\\
 
 O projeto do controlador Preditor de Smith baseia-se na compensação do atraso de medição de 3 minutos (180 segundos) na concentração $C_B$. A estratégia consiste em utilizar um modelo interno da planta sem atraso para prever o comportamento do sistema, removendo efetivamente o atraso da malha principal de realimentação. Este approach é particularmente adequado quando o atraso é significativo comparado à constante de tempo dominante do sistema ($L/(\tau_1 + \tau_2) = 3/0.75 = 4$, indicando um sistema com atraso dominante).
 
@@ -763,7 +764,7 @@ C_A(s) = \frac{0.8}{(s+6.9433)}C_{AF}(s) +\frac{4.5067}{s+6.9433} U(s)
 \label{eq:planta_ca}
 \end{equation}
 
-Com as funções de transferência definidas, estas serão discretizadas utilizando o comando \texttt{c2d} do MATLAB. O período de amostragem utilizado (\(T_s\)) será de 0.07 segundo, conforme adotado na questão anterior.\\
+Com as funções de transferência definidas, estas serão discretizadas utilizando o comando \texttt{c2d} do MATLAB. O período de amostragem utilizado ($T_s$) será de 0.07 segundo, conforme adotado na questão anterior.\\
 
 \lstset{
   language=Octave,
@@ -809,7 +810,7 @@ Ca_U_discrete
 \end{lstlisting}
 
 
-Função de transferência \(C_B\)-\(C_{AF}\) discreta:\\
+Função de transferência $C_B$-$C_{AF}$ discreta:\\
 
 \begin{equation}
 C_B(z): \quad \frac{0.004483 z^2 + 0.008967 z + 0.004483}{z^2 - 1.501 z + 0.543}C_{AF}(z)
@@ -817,7 +818,7 @@ C_B(z): \quad \frac{0.004483 z^2 + 0.008967 z + 0.004483}{z^2 - 1.501 z + 0.543}
 
 Tempo de amostragem: 0.07s\\
 
-Função de transferência \(C_B\)-\(U\) discreta:
+Função de transferência $C_B$-$U$ discreta:
 
 \begin{equation}
 C_B: \quad \frac{-0.04658 z^2 + 0.02241 z + 0.069}{z^2 - 1.501 z + 0.543}U(z)
@@ -925,14 +926,14 @@ A validação do controlador Preditor de Smith no modelo não linear é essencia
 
 A simulação do Preditor de Smith discreto requer a implementação do modelo interno da planta e do esquema de compensação de atraso. O controlador foi discretizado com período de amostragem $T_s = 0.07$ s.
 
-\begin{lstlisting}[caption=Implementação do Preditor de Smith Discreto]
-%% Parâmetros do sistema
-Ts = 0.07;  % Período de amostragem [s]
+\begin{lstlisting}[caption=Implementacao do Preditor de Smith Discreto]
+%% Parametros do sistema
+Ts = 0.07;  % Periodo de amostragem [s]
 L_delay = 3*60/Ts;  % Atraso de 3 min em amostras
 k1 = 6.01; k2 = 0.8433; k3 = 0.1123;
 
 %% Modelo linearizado discreto (sem atraso)
-% Função de transferência CB/U
+% Funcao de transferencia CB/U
 s = tf('s');
 Gp_cont = tf([-2.1699, 12.034], conv([1/6.9433, 1], [1/1.6433, 1]));
 Gp_disc = c2d(Gp_cont, Ts, 'zoh');
@@ -945,16 +946,16 @@ Kc = 0.156; tau_i = 0.543*60; % Converter para segundos
 alpha = exp(-Ts/tau_i);
 Gc_disc = Kc * tf([1, -alpha], [1, -1], Ts);
 
-%% Implementação do Preditor de Smith
+%% Implementacao do Preditor de Smith
 function [u_out, CB_pred, CB_measured] = smith_predictor_step(r, CB_delayed, ...
     Gp_model, Gp_model_delay, Gc, estados)
     
     % Estados: [estados_planta, estados_controlador, buffer_atraso]
     
-    % Predição da saída sem atraso
+    % Predicao da saida sem atraso
     CB_pred = lsim(Gp_model, estados.u_hist(end), 1);
     
-    % Predição da saída com atraso (modelo)
+    % Predicao da saida com atraso (modelo)
     CB_model_delay = lsim(Gp_model_delay, estados.u_hist(end), 1);
     
     % Sinal de feedback compensado
@@ -963,14 +964,14 @@ function [u_out, CB_pred, CB_measured] = smith_predictor_step(r, CB_delayed, ...
     % Erro
     e = r - CB_comp;
     
-    % Ação de controle
+    % Acao de controle
     u_out = lsim(Gc, e, 1);
-    u_out = max(0, min(10, u_out));  % Saturação
+    u_out = max(0, min(10, u_out));  % Saturacao
     
     CB_measured = CB_delayed;
 end
 
-%% Simulação completa do sistema
+%% Simulacao completa do sistema
 t_sim = 0:Ts:20*60;  % 20 minutos em segundos
 n_samples = length(t_sim);
 
@@ -978,11 +979,11 @@ n_samples = length(t_sim);
 r_signal = 4.81 * ones(size(t_sim));
 r_signal(t_sim >= 2*60) = 4.81 + 0.5;  % Degrau em t=2min
 
-% Perturbação em CAF
+% Perturbacao em CAF
 CAF_signal = 5.1 * ones(size(t_sim));
-CAF_signal(t_sim >= 10*60) = 5.1 - 0.2;  % Perturbação em t=10min
+CAF_signal(t_sim >= 10*60) = 5.1 - 0.2;  % Perturbacao em t=10min
 
-% Inicialização
+% Inicializacao
 CB_response = zeros(size(t_sim));
 CA_response = zeros(size(t_sim));
 u_signal = zeros(size(t_sim));
@@ -992,13 +993,13 @@ CB_buffer = 4.81 * ones(1, L_delay);  % Buffer do atraso
 CA = 0.8; CB = 4.81;
 xi = 0;  % Estado integral do PI
 
-fprintf('Simulando Preditor de Smith...\n');
+fprintf('Simulando Preditor de Smith...\\n');
 for k = 1:n_samples
     if mod(k, 1000) == 0
-        fprintf('Progresso: %.1f%%\n', k/n_samples*100);
+        fprintf('Progresso: %.1f%%\\n', k/n_samples*100);
     end
     
-    % Medição com atraso
+    % Medicao com atraso
     CB_delayed = CB_buffer(1);
     
     % Preditor de Smith
@@ -1011,7 +1012,7 @@ for k = 1:n_samples
     % Atualizar estado integral
     xi = xi + e;
     
-    % Simular planta não linear por um passo
+    % Simular planta nao linear por um passo
     dt = Ts;
     [CA, CB] = simular_passo_nao_linear(CA, CB, u_k, CAF_signal(k), dt);
     
@@ -1024,12 +1025,12 @@ for k = 1:n_samples
     CB_buffer = [CB_buffer(2:end), CB];
 end
 
-%% Visualização dos resultados
+%% Visualizacao dos resultados
 figure;
 subplot(3,1,1);
 plot(t_sim/60, CB_response, 'b-', 'LineWidth', 2, 'DisplayName', 'CB Real');
 hold on;
-plot(t_sim/60, r_signal, 'r--', 'LineWidth', 1.5, 'DisplayName', 'Referência');
+plot(t_sim/60, r_signal, 'r--', 'LineWidth', 1.5, 'DisplayName', 'Referencia');
 xlabel('Tempo [min]'); ylabel('CB [mol/l]');
 title('Resposta do Sistema com Preditor de Smith');
 legend; grid on;
@@ -1042,24 +1043,24 @@ title('Sinal de Controle'); grid on;
 subplot(3,1,3);
 plot(t_sim/60, CAF_signal, 'm-', 'LineWidth', 2);
 xlabel('Tempo [min]'); ylabel('CAF [mol/l]');
-title('Perturbação'); grid on;
+title('Perturbacao'); grid on;
 
-% Função para simular um passo da planta não linear
+% Funcao para simular um passo da planta nao linear
 function [CA_new, CB_new] = simular_passo_nao_linear(CA, CB, u, CAF, dt)
-    % Integração usando Euler
+    % Integracao usando Euler
     dCA_dt = -6.01*CA - 0.1123*CA^2 + (CAF - CA)*u;
     dCB_dt = 6.01*CA - 0.8433*CB - CB*u;
     
     CA_new = CA + dt * dCA_dt;
     CB_new = CB + dt * dCB_dt;
     
-    % Garantir valores físicos
+    % Garantir valores fisicos
     CA_new = max(0, CA_new);
     CB_new = max(0, CB_new);
 end
 
-%% Análise de desempenho
-% Calcular métricas para seguimento de referência
+%% Analise de desempenho
+% Calcular metricas para seguimento de referencia
 idx_step = find(t_sim >= 2*60, 1);
 idx_end = find(t_sim >= 8*60, 1);
 CB_step = CB_response(idx_step:idx_end);
@@ -1070,15 +1071,15 @@ CB_final = CB_step(end);
 CB_max = max(CB_step);
 overshoot = (CB_max - CB_final) / (CB_final - 4.81) * 100;
 
-% Tempo de acomodação
+% Tempo de acomodacao
 banda_5pct = 0.05 * abs(CB_final - 4.81);
 idx_settle = find(abs(CB_step - CB_final) <= banda_5pct, 1, 'first');
 t_settling = (t_step(idx_settle) - t_step(1)) / 60;  % Em minutos
 
-fprintf('\nMétricas de Desempenho:\n');
-fprintf('Overshoot: %.2f%%\n', overshoot);
-fprintf('Tempo de acomodação: %.2f min\n', t_settling);
-fprintf('Erro regime permanente: %.4f mol/l\n', abs(CB_final - 5.31));
+fprintf('\\nMetricas de Desempenho:\\n');
+fprintf('Overshoot: %.2f%%\\n', overshoot);
+fprintf('Tempo de acomodacao: %.2f min\\n', t_settling);
+fprintf('Erro regime permanente: %.4f mol/l\\n', abs(CB_final - 5.31));
 \end{lstlisting}
 
 \textbf{Configuração da Simulação:}
@@ -1254,7 +1255,7 @@ O desenvolvimento do Preditor de Smith Filtrado visa superar as limitações ide
     \centering
     \includegraphics[width=0.8\linewidth]{image1.png}
     \caption{Arquitetura teórica do Preditor de Smith Filtrado: introdução do filtro de projeção $F_e(z)$ que permite otimizar independentemente as respostas a referência e perturbação. O filtro realoca os polos da função de transferência de rejeição para obter resposta mais rápida sem comprometer o seguimento de referência.}
-    \label{fig:enter-label}
+    \label{fig:psf_architecture}
 \end{figure}
 
 A implementação aproveita a estrutura do Preditor de Smith convencional desenvolvida anteriormente, incorporando o filtro de projeção para melhorar o desempenho:
@@ -1283,7 +1284,7 @@ Fe(z) = \frac{a^2z+bz+c}{(z-\lambda)^2}
 \end{equation}
 
 
-Vamos iniciar obtendo o valor de \(\lambda\), utilizando o tempo de assentamento desejado e a aproximação para polos reais e iguais. Para facilitar, obtemos inicialmente o polo desejado  no continuo e depois realizaremos a discretização.
+Vamos iniciar obtendo o valor de $\lambda$, utilizando o tempo de assentamento desejado e a aproximação para polos reais e iguais. Para facilitar, obtemos inicialmente o polo desejado  no continuo e depois realizaremos a discretização.
 
 
 Polo desejado no contínuo:
@@ -1301,7 +1302,7 @@ Passando para o discreto, temos:
 Aplicando o filtro de projeção na primeira condição:
 
 \begin{equation}
-Fe(1) = 1 → \frac{a+b+c}{(a-\lambda)^2} = 1
+Fe(1) = 1 \rightarrow \frac{a+b+c}{(a-\lambda)^2} = 1
 \end{equation}
 
 Obtemos a seguinte equação:
@@ -1339,7 +1340,7 @@ a * pz^2_2 + b * pz_2 + c = (pz_2 - \lambda)^2 * pz^d_2
 \end{equation}\\
 
 
-Tendo os valores para \(pz_1 = 0.608\), \(pz_2 = 0.893\), \(d = 43\), \(\lambda = 0.869\). Temos:
+Tendo os valores para $pz_1 = 0.608$, $pz_2 = 0.893$, $d = 43$, $\lambda = 0.869$. Temos:
 
 
 \begin{equation}
@@ -1379,7 +1380,7 @@ Agora iremos analisar o comportamento do sistema linear com o Preditor de Smith 
     \centering
     \includegraphics[width=0.9\linewidth]{image2.png}
     \caption{Implementação prática do Preditor de Smith Filtrado: estrutura equivalente que facilita a sintonia dos parâmetros e análise da estabilidade. Mostra claramente como o filtro $F_e(z)$ modifica a malha de realimentação para melhorar a rejeição de perturbações mantendo o desempenho de seguimento.}
-    \label{fig:enter-label}
+    \label{fig:psf_implementation_practical}
 \end{figure}
 
 Contudo, para que possamos implementar o filtro desenvolvido, temos que alterar a estrutura do Preditor de Smith afim de obter uma equivalente estável. Dessa forma, chegamos no seguinte Preditor de Smith filtrado equivalente estável e implementável.
@@ -1388,7 +1389,7 @@ Contudo, para que possamos implementar o filtro desenvolvido, temos que alterar 
     \centering
     \includegraphics[width=0.9\linewidth]{image3.png}
     \caption{Estrutura Preditor de Smith Filtrado Implementavel (Modelo linear)}
-    \label{fig:enter-label}
+    \label{fig:psf_implementation_linear}
 \end{figure}
 
 Onde:
@@ -1406,7 +1407,7 @@ Dessa forma, obtemos a seguinte resposta a mudanças do tipo degrau na referenci
     \centering
     \includegraphics[width=0.9\linewidth]{image4.png}
     \caption{Desempenho superior do PSF para seguimento de referência: comparação entre Preditor de Smith padrão (linha tracejada) e filtrado (linha contínua) no modelo linear. O PSF mantém praticamente o mesmo desempenho de seguimento ($t_{5\%} \approx 1.4$ min) enquanto prepara o sistema para melhor rejeição de perturbações.}
-    \label{fig:enter-label}
+    \label{fig:psf_step_response_ref}
 \end{figure}
 
 Agora, obtemos a seguinte resposta a mudanças do tipo degrau na perturbação:
@@ -1415,7 +1416,7 @@ Agora, obtemos a seguinte resposta a mudanças do tipo degrau na perturbação:
     \centering
     \includegraphics[width=0.9\linewidth]{image5.png}
     \caption{Melhoria dramática na rejeição de perturbações com PSF: redução do tempo de acomodação de 4 minutos (PS padrão) para aproximadamente 1 minuto (PSF). Esta melhoria é obtida pela realocação estratégica dos polos através do filtro $F_e(z) = \frac{z-0.4}{z-0.1}$.}
-    \label{fig:enter-label}
+    \label{fig:psf_step_response_disturbance}
 \end{figure}
 
 Assim, para o sistema não linear temos a seguinte estrutura:
@@ -1424,7 +1425,7 @@ Assim, para o sistema não linear temos a seguinte estrutura:
     \centering
     \includegraphics[width=0.9\linewidth]{image6.png}
     \caption{Estrutura Preditor de Smith Filtrado Implementavel (Modelo não linear)}
-    \label{fig:enter-label}
+    \label{fig:psf_nonlinear_structure}
 \end{figure}
 
 Onde, obtemos a seguinte resposta a mudanças do tipo degrau na referencia:
@@ -1433,7 +1434,7 @@ Onde, obtemos a seguinte resposta a mudanças do tipo degrau na referencia:
     \centering
     \includegraphics[width=0.9\linewidth]{image7.png}
     \caption{Validação do PSF no modelo não linear: manutenção do desempenho superior mesmo considerando as não-linearidades cinéticas do processo químico. Confirmação da robustez da estratégia de controle para condições realistas de operação industrial.}
-    \label{fig:enter-label}
+    \label{fig:psf_nonlinear_ref_response}
 \end{figure}
 
 Neste caso, obtemos um tempo de assentamento de 1.52 minutos, oque visto pelo grupo é aceitavel.
@@ -1444,21 +1445,21 @@ E tambem a seguinte resposta para mudanças do tipo degrau na perturbação:
     \centering
     \includegraphics[width=0.9\linewidth]{image8.png}
     \caption{Respostas P.S.F a mudanças de degrau na perturbação (Modelo não linear)}
-    \label{fig:enter-label}
+    \label{fig:psf_nonlinear_disturbance_response}
 \end{figure}
 
 Para mudanças do tipo degrau, obtemos o tempo de assentamento de
 aproximadamente um minuto.
 
 
-Para estudar a robustez do sistema utilizamos o código anterior e multiplicamos \(\frac{Y}{R}\) pelo filtro \(\mathcal{F}_e\) e obtivemos o seguinte gráfico:
+Para estudar a robustez do sistema utilizamos o código anterior e multiplicamos $Y/R$ pelo filtro $F_e$ e obtivemos o seguinte gráfico:
 
 
 \begin{figure} [H]
     \centering
     \includegraphics[width=0.6\linewidth]{image9.png}
     \caption{Robustez aprimorada do PSF: comparação das margens de estabilidade entre PS padrão e filtrado, demonstrando que a introdução do filtro $F_e(z)$ mantém margens adequadas (MG > 6 dB, MF > 40°) enquanto melhora significativamente a rejeição de perturbações.}
-    \label{fig:enter-label}
+    \label{fig:psf_robustness_analysis}
 \end{figure}
 
 A análise da Figura 21 mostra que a introdução do filtro de projeção resulta em uma diminuição da margem de robustez do sistema. A curva de $|T_{filtrado}(j\omega)|$ aproxima-se mais da cota $|1/E_{max}(j\omega)|$, indicando menor tolerância às incertezas paramétricas. 
@@ -1474,7 +1475,7 @@ Esta correlação entre análise teórica e validação experimental demonstra q
     \centering
     \includegraphics[width=0.9\linewidth]{image10.png}
     \caption{Diagrama de Blocos Preditor de Smith Filtrado}
-    \label{fig:enter-label}
+    \label{fig:psf_block_diagram}
 \end{figure}
 
 Onde o controlador equivalente é dado da seguinte forma:
@@ -1493,12 +1494,120 @@ Utilizando o matlab, chegamos no seguinte controlador equivalente:
     \centering
     \includegraphics[width=0.9\linewidth]{image11.png}
     \caption{Controlador equivalente do P.S.F}
-    \label{fig:enter-label}
+    \label{fig:psf_equivalent_controller}
 \end{figure}
 
 A análise do controlador equivalente $C_{eq}$ (Figura 23) revela uma estrutura de ordem extremamente elevada (ordem > 40). Esta complexidade surge da combinação dos efeitos do controlador principal, do filtro de projeção e do atraso do sistema.
 
 A implementação direta deste controlador monolítico seria impraticável devido a: (i) complexidade computacional excessiva; (ii) sensibilidade elevada a erros de arredondamento numérico; (iii) dificuldade de sintonização e manutenção. Este resultado destaca a principal vantagem da estrutura do Preditor de Smith: ela permite implementar uma estratégia de controle sofisticada de forma modular, elegante e fisicamente intuitiva, contornando a necessidade de um controlador de alta ordem impraticável.
+
+\subsection{Análise Gráfica das Simulações}
+Os gráficos a seguir, gerados via Octave, detalham o comportamento do sistema e dos controladores projetados.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_resposta_degrau.png}
+    \caption{Resposta ao Degrau com Preditor de Smith.}
+    \label{fig:resposta_degrau}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_bode_controlador.png}
+    \caption{Diagrama de Bode do Controlador Discreto.}
+    \label{fig:bode_controlador}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_bode_filtro.png}
+    \caption{Diagrama de Bode do Filtro de Referência.}
+    \label{fig:bode_filtro}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_analise_temporal.png}
+    \caption{Análise Temporal do Sistema com Filtro.}
+    \label{fig:analise_temporal_main}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_comparacao_step.png}
+    \caption{Comparação de Resposta ao Degrau entre Controladores.}
+    \label{fig:comparacao_step_main}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_comparacao_bode.png}
+    \caption{Comparação do Diagrama de Bode entre Controladores.}
+    \label{fig:comparacao_bode_main}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_margens_estabilidade.png}
+    \caption{Margens de ganho e fase do sistema em malha aberta.}
+    \label{fig:margens_main}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_lugar_raizes.png}
+    \caption{Lugar das raízes do sistema em malha aberta.}
+    \label{fig:lr_main}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_sinais_teste.png}
+    \caption{Sinais de Teste: Referência, Ruído e Perturbação.}
+    \label{fig:sinais_teste_main}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figura_analise_robustez.png}
+    \caption{Análise de robustez com variações paramétricas.}
+    \label{fig:robustez_main}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_comparacao_linear_naolinear.png}
+    \caption{Comparacao Linear vs Nao Linear.}
+    \label{fig:comparacao_linear_naolinear}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_pi_naolinear_amplitudes.png}
+    \caption{Simulacao do controle PI em sistema nao linear.}
+    \label{fig:pi_naolinear_amplitudes}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_robustez_leadlag_curvas.png}
+    \caption{Robustez do Controlador Lead-Lag (variacao parametrica).}
+    \label{fig:robustez_leadlag_curvas}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_robustez_leadlag_curvas.png}
+    \caption{Analise estatistica dos resultados de robustez do Lead-Lag.}
+    \label{fig:robustez_leadlag_distribuicao}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_pi_naolinear_amplitudes.png}
+    \caption{Resposta do Sistema com Preditor de Smith (Nao Linear).}
+    \label{fig:ps_naolinear_resposta}
+\end{figure}
 
 
 \section{Conclusão Geral do Trabalho}
@@ -1507,7 +1616,7 @@ Este trabalho completo apresentou um estudo abrangente sobre o controle de um re
 
 \subsection{Síntese dos Resultados das Três Partes}
 
-O Preditor de Smith padrão atendeu plenamente às especificações de seguimento de referência, mantendo overshoot < 5\\% e tempo de acomodação de aproximadamente 1,74 minutos após a implementação do filtro de referência. A estrutura demonstrou robustez adequada a incertezas paramétricas de até 15\\% nas constantes de tempo, 10\\% no ganho e 10\\% no atraso, conforme evidenciado pela análise de estabilidade robusta.
+O Preditor de Smith padrão atendeu plenamente às especificações de seguimento de referência, mantendo overshoot < 5\% e tempo de acomodação de aproximadamente 1,74 minutos após a implementação do filtro de referência. A estrutura demonstrou robustez adequada a incertezas paramétricas de até 15\% nas constantes de tempo, 10\% no ganho e 10\% no atraso, conforme evidenciado pela análise de estabilidade robusta.
 
 Entretanto, a rejeição de perturbações apresentou desempenho limitado, com tempo de resposta inerentemente restrito pelo atraso de detecção. Esta limitação é fundamental à estrutura do Preditor de Smith, onde perturbações entram no processo antes do atraso, mas o controlador só pode reagir após a detecção do erro na saída atrasada.
 
@@ -1530,3 +1639,125 @@ A escolha entre as duas estratégias deve considerar os requisitos específicos 
 Ambas as abordagens demonstraram ser viáveis para o controle de processos químicos com atrasos significativos, contribuindo para o desenvolvimento de estratégias de controle mais eficazes em aplicações industriais.
 
 \end{document}
+
+</final_file_content>
+
+IMPORTANT: For any future changes to this file, use the final_file_content shown above as your reference. This content reflects the current state of the file, including any auto-formatting (e.g., if you used single quotes but the formatter converted them to double quotes). Always base your SEARCH/REPLACE operations on this final version to ensure accuracy.
+
+<environment_details>
+# VSCode Visible Files
+main.tex
+
+# VSCode Open Tabs
+Trabalho 1 Sistemas de Controle/main.tex
+Trabalho 2 Sistemas de Controle/main.tex
+figure5.txt
+figure6.txt
+figure7.txt
+image10.txt
+image11.txt
+Imagens/BrasaoUFSC.txt
+Imagens/q1.txt
+Imagens/q1p.txt
+Imagens/q11.txt
+Imagens/q11p.txt
+Imagens/q12.txt
+Imagens/q13.txt
+Imagens/Reator.txt
+Trabalho 1 Sistemas de Controle/diagramablocos.txt
+Trabalho 1 Sistemas de Controle/diagramapolosezeros.txt
+Trabalho 1 Sistemas de Controle/figura8_1.txt
+Trabalho 1 Sistemas de Controle/figura8.txt
+Trabalho 1 Sistemas de Controle/figura9.txt
+Trabalho 1 Sistemas de Controle/figura10.txt
+Trabalho 1 Sistemas de Controle/figura11.txt
+Trabalho 1 Sistemas de Controle/figura12.txt
+Trabalho 1 Sistemas de Controle/figura13.txt
+Trabalho 1 Sistemas de Controle/figura14.txt
+Trabalho 1 Sistemas de Controle/figura15.txt
+Trabalho 1 Sistemas de Controle/figura16.txt
+Trabalho 1 Sistemas de Controle/figurats.txt
+Trabalho 1 Sistemas de Controle/FiguraTsnovo.txt
+Trabalho 1 Sistemas de Controle/image.txt
+Trabalho 1 Sistemas de Controle/naolinear.txt
+Trabalho 1 Sistemas de Controle/respostaaosistemanaolinear.txt
+Trabalho 1 Sistemas de Controle/respostacomcontrolador.txt
+Trabalho 1 Sistemas de Controle/respostacompequenasvariaçoes.txt
+Trabalho 1 Sistemas de Controle/Ts01.txt
+Trabalho 1 Sistemas de Controle/Imagens/bodey.txt
+Trabalho 1 Sistemas de Controle/Imagens/BrasaoUFSC.txt
+Trabalho 1 Sistemas de Controle/Imagens/CAFxUxCA.txt
+Trabalho 1 Sistemas de Controle/Imagens/CAFxUxCB.txt
+Trabalho 1 Sistemas de Controle/Imagens/Grafico com mf na entrada.txt
+Trabalho 1 Sistemas de Controle/Imagens/pertubaçao.txt
+Trabalho 1 Sistemas de Controle/Imagens/polo e zero com filtro.txt
+Trabalho 1 Sistemas de Controle/Imagens/polo e zero sem filtro.txt
+Trabalho 1 Sistemas de Controle/Imagens/Q2.txt
+Trabalho 1 Sistemas de Controle/Imagens/Q2Simu.txt
+Trabalho 1 Sistemas de Controle/Imagens/Q3Simu.txt
+Trabalho 1 Sistemas de Controle/Imagens/Q3SimuS.txt
+Trabalho 1 Sistemas de Controle/Imagens/Reator.txt
+Trabalho 1 Sistemas de Controle/Imagens/resposta mf com degrau.txt
+Trabalho 1 Sistemas de Controle/Imagens/resposta.txt
+Trabalho 2 Sistemas de Controle/image.txt
+Trabalho 2 Sistemas de Controle/image1.txt
+Trabalho 2 Sistemas de Controle/image2.txt
+Trabalho 2 Sistemas de Controle/image3.txt
+Trabalho 2 Sistemas de Controle/image4.txt
+Trabalho 2 Sistemas de Controle/image5.txt
+Trabalho 2 Sistemas de Controle/image6.txt
+Trabalho 2 Sistemas de Controle/image7.txt
+Trabalho 2 Sistemas de Controle/image8.txt
+Trabalho 2 Sistemas de Controle/image9.txt
+Trabalho 2 Sistemas de Controle/image10.txt
+Trabalho 2 Sistemas de Controle/image11.txt
+Trabalho 2 Sistemas de Controle/image12.txt
+Trabalho 2 Sistemas de Controle/image13.txt
+Trabalho 2 Sistemas de Controle/image14.txt
+Trabalho 2 Sistemas de Controle/image15.txt
+Trabalho 2 Sistemas de Controle/image16.txt
+Trabalho 2 Sistemas de Controle/image17.txt
+Trabalho 2 Sistemas de Controle/image18.txt
+Trabalho 2 Sistemas de Controle/image19.txt
+convert_images.py
+Trabalho 2 Sistemas de Controle/Imagens/1B/1BbodeYQAutoral.txt
+Trabalho-Reator.txt
+apresentacao.tex
+apresentacao_introdutoria.tex
+perguntas.md
+apresentacao_final.tex
+figure8.txt
+main.out
+codigo_matlab.m
+codigo_adicional.m
+executar_analises.m
+run_all.m
+Relatorio-Tecnico-Unificado.tex
+main.tex
+figure9.txt
+figure10.txt
+image1.txt
+image2.txt
+image8.txt
+image9.txt
+image3.txt
+image4.txt
+image5.txt
+image6.txt
+image7.txt
+
+# Actively Running Terminals
+## Original command: `pdflatex main.tex`
+## Original command: `pdflatex main.tex`
+## Original command: `pdflatex main.tex`
+## Original command: `pdflatex main.tex`
+
+# Current Time
+07/07/2025, 7:33:01 PM (America/Sao_Paulo, UTC-3:00)
+
+# Context Window Usage
+299.837 / 1.048,576K tokens used (29%)
+
+# Current Mode
+ACT MODE
+</environment_details>

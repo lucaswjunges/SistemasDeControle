@@ -102,8 +102,8 @@
     
     \begin{figure}
         \centering
-        \includegraphics[width=0.45\textwidth]{"Trabalho 1 Sistemas de Controle/respostacompequenasvariaçoes".png}
-        \caption{\tiny Resposta do sistema com controlador PI.}
+        \includegraphics[width=0.7\textwidth]{figura_analise_temporal.png}
+        \caption{\tiny Resposta ao degrau do sistema com filtro.}
     \end{figure}
     
     \note{Explicamos a primeira abordagem: a mais simples e direta. Linearizamos o modelo para poder aplicar técnicas clássicas e projetamos um controlador PI. O resultado é bom, mas apenas perto do ponto onde linearizamos.}
@@ -122,18 +122,16 @@
     \scriptsize
     \textbf{2. Controle Feedforward:} Combater perturbação (\(C_{af}\)) ajustando a entrada proativamente.
     
-    \begin{columns}[T]
-        \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \includegraphics[width=0.25\textwidth]{"Trabalho 2 Sistemas de Controle/image3".png}
-            \end{figure}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \includegraphics[width=0.25\textwidth]{"Trabalho 2 Sistemas de Controle/image2".png}
-            \end{figure}
-        \end{column}
-    \end{columns}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{figura_comparacao_step.png}
+        \caption{\tiny Comparação de resposta ao degrau entre controladores.}
+    \end{figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{figura_comparacao_bode.png}
+        \caption{\tiny Comparação de diagramas de Bode entre controladores.}
+    \end{figure}
     
     \note{Aqui, damos um passo à frente. O controlador por LR é mais adaptado à dinâmica do sistema. O grande salto de qualidade vem com o Feedforward, que nos permite anular a perturbação de forma muito eficaz.}
 \end{frame}

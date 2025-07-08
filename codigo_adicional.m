@@ -23,13 +23,13 @@ function analise_resposta_temporal()
     t_min = t / 60;  % Conversão para minutos
     
     % Análises
-    info = stepinfo(MF_filtrado);
+    % info = stepinfo(MF_filtrado); % A função stepinfo não está disponível no Octave
     
     fprintf('=== ANÁLISE TEMPORAL ===\n');
-    fprintf('Tempo de subida: %.2f min\n', info.RiseTime/60);
-    fprintf('Tempo de pico: %.2f min\n', info.PeakTime/60);
-    fprintf('Overshoot: %.2f%%\n', info.Overshoot);
-    fprintf('Tempo de assentamento: %.2f min\n', info.SettlingTime/60);
+    % fprintf('Tempo de subida: %.2f min\n', info.RiseTime/60);
+    % fprintf('Tempo de pico: %.2f min\n', info.PeakTime/60);
+    % fprintf('Overshoot: %.2f%%\n', info.Overshoot);
+    % fprintf('Tempo de assentamento: %.2f min\n', info.SettlingTime/60);
     
     % Plot
     figure('Name', 'Análise Temporal');
@@ -43,6 +43,7 @@ function analise_resposta_temporal()
     hold on;
     plot([0, max(t_min)], [1, 1], 'r--', 'LineWidth', 1);
     legend('Resposta', 'Referência', 'Location', 'best');
+    print(gcf, '-dpng', 'figura_analise_temporal.png'); % Salva a figura
 end
 
 %% ========================================================================
@@ -76,12 +77,14 @@ function comparacao_controladores()
     legend('PI Simples', 'LR (Trabalho)', 'Location', 'best');
     title('Comparação de Resposta ao Degrau');
     grid on;
+    print(gcf, '-dpng', 'figura_comparacao_step.png'); % Salva a figura
     
     % Comparação frequencial
     figure('Name', 'Bode - Comparação');
     bode(MF1, MF2);
     legend('PI Simples', 'LR (Trabalho)', 'Location', 'best');
     grid on;
+    print(gcf, '-dpng', 'figura_comparacao_bode.png'); % Salva a figura
 end
 
 %% ========================================================================
@@ -113,12 +116,14 @@ function analise_estabilidade()
     margin(MA);
     grid on;
     title('Diagrama de Bode com Margens de Estabilidade');
+    print(gcf, '-dpng', 'figura_margens_estabilidade.png'); % Salva a figura
     
     % Lugar das raízes
     figure('Name', 'Lugar das Raízes');
     rlocus(MA);
     grid on;
     title('Lugar das Raízes do Sistema');
+    print(gcf, '-dpng', 'figura_lugar_raizes.png'); % Salva a figura
 end
 
 %% ========================================================================
@@ -166,6 +171,7 @@ function simulacao_com_ruido()
     xlabel('Tempo (min)');
     ylabel('Amplitude');
     grid on;
+    print(gcf, '-dpng', 'figura_sinais_teste.png'); % Salva a figura
 end
 
 %% ========================================================================
@@ -249,6 +255,7 @@ function analise_robustez_detalhada()
     % Linha de segurança
     plot([-25, 25], [45, 45], 'r--', 'LineWidth', 2);
     text(0, 47, 'Limite Seguro (45°)', 'HorizontalAlignment', 'center');
+    print(gcf, '-dpng', 'figura_analise_robustez.png'); % Salva a figura
 end
 
 %% ========================================================================

@@ -2,81 +2,109 @@
 \providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
 \@nameuse{bbl@beforestart}
 \catcode `"\active 
-\providecommand\hyper@newdestlabel[2]{}
-\providecommand\HyField@AuxAddToFields[1]{}
-\providecommand\HyField@AuxAddToCoFields[2]{}
 \babel@aux{brazil}{}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introdução e Contextualização do Problema}{3}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}O Desafio do Controle de Reatores Químicos}{3}{subsection.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Mapa Metodológico: Uma Jornada de Complexidade Crescente}{3}{subsection.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Desenvolvimento}{4}{section.2}\protected@file@percent }
-\newlabel{chap:desenvolvimento}{{2}{4}{Desenvolvimento}{section.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Diagrama esquemático do reator continuamente agitado (CSTR) para produção de cyclopentenol. Mostra as variáveis de entrada (concentração de alimentação $C_{AF}$ e vazão $F$), as concentrações internas ($C_A$, $C_B$, $C_C$, $C_D$) e as reações químicas que ocorrem no processo.}}{4}{figure.caption.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Parte 1 - Análise do Sistema e Projeto por Alocação}{5}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Questão 1: Análise do Funcionamento em Equilíbrio}{5}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Questão 2: Estudo do Comportamento Dinâmico}{5}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Questão 3: Linearização do Sistema}{5}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Questão 4: Funções de Transferência}{5}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Questão 5: Simulação e Comparação}{6}{subsection.3.5}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Código MATLAB para simulação comparativa}}{6}{lstlisting.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Questão 6: Projeto do Controle PI}{7}{subsection.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Questão 7: Análise das Respostas em Malha Fechada}{8}{subsection.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Questão 8: Simulação do Sistema Não Linear}{8}{subsection.3.8}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces Simulação do controle PI em sistema não linear}}{8}{lstlisting.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Questão 9: Discretização do Controle}{11}{subsection.3.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Parte 2 - Análise e Projeto por Lugar das Raízes}{12}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Questão 1: Projeto por Lugar das Raízes}{12}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Questão 2: Simulação do Sistema Não Linear}{12}{subsection.4.2}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}{\ignorespaces Simulação de robustez - Controlador Lead-Lag}}{13}{lstlisting.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Questão 3: Controle com Sensor Adicional}{16}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Questão 4: Simulação com Cenário Realista}{16}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Parte 3 - Sistema com Atraso de Medição de Concentração}{17}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Questão 1: Projeto do Preditor de Smith}{17}{subsection.5.1}\protected@file@percent }
-\newlabel{eq:planta_cb}{{16}{17}{Questão 1: Projeto do Preditor de Smith}{equation.16}{}}
-\newlabel{eq:planta_ca}{{17}{17}{Questão 1: Projeto do Preditor de Smith}{equation.17}{}}
-\newlabel{eq:controlador_continuo}{{20}{18}{Questão 1: Projeto do Preditor de Smith}{equation.20}{}}
-\newlabel{eq:controlador_discreto}{{21}{18}{Questão 1: Projeto do Preditor de Smith}{equation.21}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Arquitetura de controle com Preditor de Smith discreto para compensação do atraso de medição de 3 minutos. O modelo interno $G_m(z)$ prediz o comportamento da planta sem atraso, enquanto $G_{ma}(z)$ inclui o modelo com atraso. Esta estrutura permite que o controlador $G_c(z)$ atue com base na predição, removendo efetivamente o atraso da malha principal.}}{19}{figure.caption.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Desempenho do Preditor de Smith para seguimento de referência: resposta da concentração $C_B$ (superior), sinal de referência (meio) e ação de controle $u$ (inferior). Observe o atendimento das especificações de $t_{5\%} = 1.43$ min e overshoot = 4.1\%, confirmando a eficácia da compensação de atraso.}}{20}{figure.caption.5}\protected@file@percent }
-\newlabel{eq:filtro_referencia}{{22}{20}{Questão 1: Projeto do Preditor de Smith}{equation.22}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Diagrama de Blocos do sistema discreto com Preditor de Smith e Filtro de Referência}}{21}{figure.caption.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Melhoria obtida com filtro de referência no Preditor de Smith: comparação entre respostas com (linha contínua) e sem (linha tracejada) o filtro $F_r(z)$. O filtro suaviza a resposta transitória, reduzindo picos na ação de controle e melhorando a robustez sem comprometer o tempo de acomodação.}}{22}{figure.caption.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Limitação do Preditor de Smith na rejeição de perturbações: resposta a distúrbio em $C_{AF}$ mostrando tempo de acomodação de aproximadamente 4 minutos, significativamente maior que o desempenho para seguimento de referência. Esta deficiência motiva o desenvolvimento do Preditor de Smith Filtrado.}}{23}{figure.caption.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Questão 2: Simulação do Comportamento Dinâmico}{25}{subsection.5.2}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4}{\ignorespaces Implementação do Preditor de Smith Discreto}}{25}{lstlisting.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Preditor de Smith com sistema não linear}}{28}{figure.caption.9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Resposta Y/R no sistema não linear com mudanças do tipo degrau na referência}}{29}{figure.caption.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Resposta Y/Q no sistema não linear com mudanças do tipo degrau na perturbação}}{29}{figure.caption.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Variação Grande de Referência}}{30}{figure.caption.12}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Análise de robustez paramétrica: curvas de erro multiplicativo mostrando a tolerância do sistema a variações nas constantes de tempo ($\tau _1$, $\tau _2$), ganho ($K$) e atraso ($L$). A região sombreada indica os limites de estabilidade, confirmando robustez adequada para variações de até 15\% nos parâmetros.}}{33}{figure.caption.13}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Margens de estabilidade do Preditor de Smith: diagramas de Bode e Nyquist evidenciando margem de ganho de 8.2 dB e margem de fase de 45°. Estes valores garantem operação estável mesmo na presença de incertezas paramétricas e atrasos adicionais não modelados.}}{33}{figure.caption.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Questão 3: Preditor de Smith Filtrado}{34}{subsection.5.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Arquitetura teórica do Preditor de Smith Filtrado: introdução do filtro de projeção $F_e(z)$ que permite otimizar independentemente as respostas a referência e perturbação. O filtro realoca os polos da função de transferência de rejeição para obter resposta mais rápida sem comprometer o seguimento de referência.}}{35}{figure.caption.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introdução e Contextualização do Problema}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}O Desafio do Controle de Reatores Químicos}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Mapa Metodológico: Uma Jornada de Complexidade Crescente}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Desenvolvimento}{2}{}\protected@file@percent }
+\newlabel{chap:desenvolvimento}{{2}{2}{}{section.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Diagrama esquemático do reator continuamente agitado (CSTR) para produção de cyclopentenol. Mostra as variáveis de entrada (concentração de alimentação $C_{AF}$ e vazão $F$), as concentrações internas ($C_A$, $C_B$, $C_C$, $C_D$) e as reações químicas que ocorrem no processo.}}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Parte 1 - Análise do Sistema e Projeto por Alocação}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Questão 1: Análise do Funcionamento em Equilíbrio}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Questão 2: Estudo do Comportamento Dinâmico}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Questão 3: Linearização do Sistema}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Questão 4: Funções de Transferência}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Questão 5: Simulação e Comparação}{4}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Codigo MATLAB para simulacao comparativa}}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Questão 6: Projeto do Controle PI}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Questão 7: Análise das Respostas em Malha Fechada}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Questão 8: Simulação do Sistema Não Linear}{6}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces Simulacao do controle PI em sistema nao linear}}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Questão 9: Discretização do Controle}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Parte 2 - Análise e Projeto por Lugar das Raízes}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Questão 1: Projeto por Lugar das Raízes}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Questão 2: Simulação do Sistema Não Linear}{10}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}{\ignorespaces Simulacao de robustez - Controlador Lead-Lag}}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Questão 3: Controle com Sensor Adicional}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Questão 4: Simulação com Cenário Realista}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Parte 3 - Sistema com Atraso de Medição de Concentração}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Questão 1: Projeto do Preditor de Smith}{15}{}\protected@file@percent }
+\newlabel{eq:planta_cb}{{16}{15}{}{equation.16}{}}
+\newlabel{eq:planta_ca}{{17}{15}{}{equation.17}{}}
+\newlabel{eq:controlador_continuo}{{20}{16}{}{equation.20}{}}
+\newlabel{eq:controlador_discreto}{{21}{16}{}{equation.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Arquitetura de controle com Preditor de Smith discreto para compensação do atraso de medição de 3 minutos. O modelo interno $G_m(z)$ prediz o comportamento da planta sem atraso, enquanto $G_{ma}(z)$ inclui o modelo com atraso. Esta estrutura permite que o controlador $G_c(z)$ atue com base na predição, removendo efetivamente o atraso da malha principal.}}{17}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Desempenho do Preditor de Smith para seguimento de referência: resposta da concentração $C_B$ (superior), sinal de referência (meio) e ação de controle $u$ (inferior). Observe o atendimento das especificações de $t_{5\%} = 1.43$ min e overshoot = 4.1\%, confirmando a eficácia da compensação de atraso.}}{18}{}\protected@file@percent }
+\newlabel{eq:filtro_referencia}{{22}{18}{}{equation.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Diagrama de Blocos do sistema discreto com Preditor de Smith e Filtro de Referência}}{19}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Melhoria obtida com filtro de referência no Preditor de Smith: comparação entre respostas com (linha contínua) e sem (linha tracejada) o filtro $F_r(z)$. O filtro suaviza a resposta transitória, reduzindo picos na ação de controle e melhorando a robustez sem comprometer o tempo de acomodação.}}{20}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Limitação do Preditor de Smith na rejeição de perturbações: resposta a distúrbio em $C_{AF}$ mostrando tempo de acomodação de aproximadamente 4 minutos, significativamente maior que o desempenho para seguimento de referência. Esta deficiência motiva o desenvolvimento do Preditor de Smith Filtrado.}}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Questão 2: Simulação do Comportamento Dinâmico}{23}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4}{\ignorespaces Implementacao do Preditor de Smith Discreto}}{23}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Preditor de Smith com sistema não linear}}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Resposta Y/R no sistema não linear com mudanças do tipo degrau na referência}}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Resposta Y/Q no sistema não linear com mudanças do tipo degrau na perturbação}}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Variação Grande de Referência}}{28}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Análise de robustez paramétrica: curvas de erro multiplicativo mostrando a tolerância do sistema a variações nas constantes de tempo ($\tau _1$, $\tau _2$), ganho ($K$) e atraso ($L$). A região sombreada indica os limites de estabilidade, confirmando robustez adequada para variações de até 15\% nos parâmetros.}}{31}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Margens de estabilidade do Preditor de Smith: diagramas de Bode e Nyquist evidenciando margem de ganho de 8.2 dB e margem de fase de 45°. Estes valores garantem operação estável mesmo na presença de incertezas paramétricas e atrasos adicionais não modelados.}}{31}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Questão 3: Preditor de Smith Filtrado}{32}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Arquitetura teórica do Preditor de Smith Filtrado: introdução do filtro de projeção $F_e(z)$ que permite otimizar independentemente as respostas a referência e perturbação. O filtro realoca os polos da função de transferência de rejeição para obter resposta mais rápida sem comprometer o seguimento de referência.}}{33}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:enter-label}{{13}{35}{Arquitetura teórica do Preditor de Smith Filtrado: introdução do filtro de projeção $F_e(z)$ que permite otimizar independentemente as respostas a referência e perturbação. O filtro realoca os polos da função de transferência de rejeição para obter resposta mais rápida sem comprometer o seguimento de referência}{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Implementação prática do Preditor de Smith Filtrado: estrutura equivalente que facilita a sintonia dos parâmetros e análise da estabilidade. Mostra claramente como o filtro $F_e(z)$ modifica a malha de realimentação para melhorar a rejeição de perturbações mantendo o desempenho de seguimento.}}{37}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:enter-label}{{14}{37}{Implementação prática do Preditor de Smith Filtrado: estrutura equivalente que facilita a sintonia dos parâmetros e análise da estabilidade. Mostra claramente como o filtro $F_e(z)$ modifica a malha de realimentação para melhorar a rejeição de perturbações mantendo o desempenho de seguimento}{figure.caption.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Estrutura Preditor de Smith Filtrado Implementavel (Modelo linear)}}{37}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:enter-label}{{15}{37}{Estrutura Preditor de Smith Filtrado Implementavel (Modelo linear)}{figure.caption.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Desempenho superior do PSF para seguimento de referência: comparação entre Preditor de Smith padrão (linha tracejada) e filtrado (linha contínua) no modelo linear. O PSF mantém praticamente o mesmo desempenho de seguimento ($t_{5\%} \approx 1.4$ min) enquanto prepara o sistema para melhor rejeição de perturbações.}}{38}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:enter-label}{{16}{38}{Desempenho superior do PSF para seguimento de referência: comparação entre Preditor de Smith padrão (linha tracejada) e filtrado (linha contínua) no modelo linear. O PSF mantém praticamente o mesmo desempenho de seguimento ($t_{5\%} \approx 1.4$ min) enquanto prepara o sistema para melhor rejeição de perturbações}{figure.caption.18}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Melhoria dramática na rejeição de perturbações com PSF: redução do tempo de acomodação de 4 minutos (PS padrão) para aproximadamente 1 minuto (PSF). Esta melhoria é obtida pela realocação estratégica dos polos através do filtro $F_e(z) = \frac  {z-0.4}{z-0.1}$.}}{38}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:enter-label}{{17}{38}{Melhoria dramática na rejeição de perturbações com PSF: redução do tempo de acomodação de 4 minutos (PS padrão) para aproximadamente 1 minuto (PSF). Esta melhoria é obtida pela realocação estratégica dos polos através do filtro $F_e(z) = \frac {z-0.4}{z-0.1}$}{figure.caption.19}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Estrutura Preditor de Smith Filtrado Implementavel (Modelo não linear)}}{39}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:enter-label}{{18}{39}{Estrutura Preditor de Smith Filtrado Implementavel (Modelo não linear)}{figure.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Validação do PSF no modelo não linear: manutenção do desempenho superior mesmo considerando as não-linearidades cinéticas do processo químico. Confirmação da robustez da estratégia de controle para condições realistas de operação industrial.}}{39}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:enter-label}{{19}{39}{Validação do PSF no modelo não linear: manutenção do desempenho superior mesmo considerando as não-linearidades cinéticas do processo químico. Confirmação da robustez da estratégia de controle para condições realistas de operação industrial}{figure.caption.21}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Respostas P.S.F a mudanças de degrau na perturbação (Modelo não linear)}}{40}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:enter-label}{{20}{40}{Respostas P.S.F a mudanças de degrau na perturbação (Modelo não linear)}{figure.caption.22}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Robustez aprimorada do PSF: comparação das margens de estabilidade entre PS padrão e filtrado, demonstrando que a introdução do filtro $F_e(z)$ mantém margens adequadas (MG > 6 dB, MF > 40°) enquanto melhora significativamente a rejeição de perturbações.}}{40}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:enter-label}{{21}{40}{Robustez aprimorada do PSF: comparação das margens de estabilidade entre PS padrão e filtrado, demonstrando que a introdução do filtro $F_e(z)$ mantém margens adequadas (MG > 6 dB, MF > 40°) enquanto melhora significativamente a rejeição de perturbações}{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Diagrama de Blocos Preditor de Smith Filtrado}}{41}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:enter-label}{{22}{41}{Diagrama de Blocos Preditor de Smith Filtrado}{figure.caption.24}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Controlador equivalente do P.S.F}}{41}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:enter-label}{{23}{41}{Controlador equivalente do P.S.F}{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusão Geral do Trabalho}{42}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Síntese dos Resultados das Três Partes}{42}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Comparação entre Estratégias}{42}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Implicações Práticas}{42}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Considerações Finais}{42}{subsection.6.4}\protected@file@percent }
-\gdef \@abspage@last{43}
+\newlabel{fig:psf_architecture}{{13}{33}{}{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Implementação prática do Preditor de Smith Filtrado: estrutura equivalente que facilita a sintonia dos parâmetros e análise da estabilidade. Mostra claramente como o filtro $F_e(z)$ modifica a malha de realimentação para melhorar a rejeição de perturbações mantendo o desempenho de seguimento.}}{35}{}\protected@file@percent }
+\newlabel{fig:psf_implementation_practical}{{14}{35}{}{figure.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Estrutura Preditor de Smith Filtrado Implementavel (Modelo linear)}}{35}{}\protected@file@percent }
+\newlabel{fig:psf_implementation_linear}{{15}{35}{}{figure.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Desempenho superior do PSF para seguimento de referência: comparação entre Preditor de Smith padrão (linha tracejada) e filtrado (linha contínua) no modelo linear. O PSF mantém praticamente o mesmo desempenho de seguimento ($t_{5\%} \approx 1.4$ min) enquanto prepara o sistema para melhor rejeição de perturbações.}}{36}{}\protected@file@percent }
+\newlabel{fig:psf_step_response_ref}{{16}{36}{}{figure.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Melhoria dramática na rejeição de perturbações com PSF: redução do tempo de acomodação de 4 minutos (PS padrão) para aproximadamente 1 minuto (PSF). Esta melhoria é obtida pela realocação estratégica dos polos através do filtro $F_e(z) = \frac  {z-0.4}{z-0.1}$.}}{36}{}\protected@file@percent }
+\newlabel{fig:psf_step_response_disturbance}{{17}{36}{}{figure.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Estrutura Preditor de Smith Filtrado Implementavel (Modelo não linear)}}{37}{}\protected@file@percent }
+\newlabel{fig:psf_nonlinear_structure}{{18}{37}{}{figure.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Validação do PSF no modelo não linear: manutenção do desempenho superior mesmo considerando as não-linearidades cinéticas do processo químico. Confirmação da robustez da estratégia de controle para condições realistas de operação industrial.}}{37}{}\protected@file@percent }
+\newlabel{fig:psf_nonlinear_ref_response}{{19}{37}{}{figure.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Respostas P.S.F a mudanças de degrau na perturbação (Modelo não linear)}}{38}{}\protected@file@percent }
+\newlabel{fig:psf_nonlinear_disturbance_response}{{20}{38}{}{figure.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Robustez aprimorada do PSF: comparação das margens de estabilidade entre PS padrão e filtrado, demonstrando que a introdução do filtro $F_e(z)$ mantém margens adequadas (MG > 6 dB, MF > 40°) enquanto melhora significativamente a rejeição de perturbações.}}{38}{}\protected@file@percent }
+\newlabel{fig:psf_robustness_analysis}{{21}{38}{}{figure.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Diagrama de Blocos Preditor de Smith Filtrado}}{39}{}\protected@file@percent }
+\newlabel{fig:psf_block_diagram}{{22}{39}{}{figure.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Controlador equivalente do P.S.F}}{39}{}\protected@file@percent }
+\newlabel{fig:psf_equivalent_controller}{{23}{39}{}{figure.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Análise Gráfica das Simulações}{40}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Resposta ao Degrau com Preditor de Smith.}}{40}{}\protected@file@percent }
+\newlabel{fig:resposta_degrau}{{24}{40}{}{figure.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Diagrama de Bode do Controlador Discreto.}}{41}{}\protected@file@percent }
+\newlabel{fig:bode_controlador}{{25}{41}{}{figure.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Diagrama de Bode do Filtro de Referência.}}{41}{}\protected@file@percent }
+\newlabel{fig:bode_filtro}{{26}{41}{}{figure.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Análise Temporal do Sistema com Filtro.}}{42}{}\protected@file@percent }
+\newlabel{fig:analise_temporal_main}{{27}{42}{}{figure.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Comparação de Resposta ao Degrau entre Controladores.}}{42}{}\protected@file@percent }
+\newlabel{fig:comparacao_step_main}{{28}{42}{}{figure.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Comparação do Diagrama de Bode entre Controladores.}}{43}{}\protected@file@percent }
+\newlabel{fig:comparacao_bode_main}{{29}{43}{}{figure.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Margens de ganho e fase do sistema em malha aberta.}}{43}{}\protected@file@percent }
+\newlabel{fig:margens_main}{{30}{43}{}{figure.30}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Lugar das raízes do sistema em malha aberta.}}{44}{}\protected@file@percent }
+\newlabel{fig:lr_main}{{31}{44}{}{figure.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Sinais de Teste: Referência, Ruído e Perturbação.}}{44}{}\protected@file@percent }
+\newlabel{fig:sinais_teste_main}{{32}{44}{}{figure.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Análise de robustez com variações paramétricas.}}{45}{}\protected@file@percent }
+\newlabel{fig:robustez_main}{{33}{45}{}{figure.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces Comparacao Linear vs Nao Linear.}}{45}{}\protected@file@percent }
+\newlabel{fig:comparacao_linear_naolinear}{{34}{45}{}{figure.34}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Simulacao do controle PI em sistema nao linear.}}{46}{}\protected@file@percent }
+\newlabel{fig:pi_naolinear_amplitudes}{{35}{46}{}{figure.35}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces Robustez do Controlador Lead-Lag (variacao parametrica).}}{46}{}\protected@file@percent }
+\newlabel{fig:robustez_leadlag_curvas}{{36}{46}{}{figure.36}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Analise estatistica dos resultados de robustez do Lead-Lag.}}{47}{}\protected@file@percent }
+\newlabel{fig:robustez_leadlag_distribuicao}{{37}{47}{}{figure.37}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Resposta do Sistema com Preditor de Smith (Nao Linear).}}{47}{}\protected@file@percent }
+\newlabel{fig:ps_naolinear_resposta}{{38}{47}{}{figure.38}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusão Geral do Trabalho}{47}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Síntese dos Resultados das Três Partes}{48}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Comparação entre Estratégias}{48}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Implicações Práticas}{48}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Considerações Finais}{48}{}\protected@file@percent }
+\gdef \@abspage@last{49}

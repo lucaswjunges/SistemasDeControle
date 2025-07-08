@@ -111,13 +111,11 @@ C_a k_1 &= C_b(k_2 + u)
 \end{align}
 A análise dessas equações no MATLAB para a faixa de operação de \(u\) e \(C_{af}\) gera os mapas de comportamento estático.
 
-% Figura temporariamente comentada para debugging de compilação
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.7\textwidth]{"Trabalho 2 Sistemas de Controle/image1.png"}
-%     \caption{Comparação de desempenho: Controlador PI (azul) vs. Controlador por LR (vermelho).}
-% \end{figure}
-\textit{(Figura temporariamente removida para fins de compilação. Será reinserida após resolução do problema.)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{"Trabalho 2 Sistemas de Controle/image1.png"}
+    \caption{Comparação de desempenho: Controlador PI (azul) vs. Controlador por LR (vermelho).}
+\end{figure}
 
 \section{Linearização e Projeto do Controlador PI}
 Para o ponto de operação \( C_{af} = 5.1 \) mol/L e \( u = 1 \) min\(^{-1}\), as concentrações de equilíbrio são \( \overline{C}_a = 0.719 \) e \( \overline{C}_b = 2.345 \) mol/L. O modelo linearizado em torno deste ponto é:
@@ -132,13 +130,11 @@ F_r(s) &= \frac{1.91627}{s + 1.91627}
 \end{align}
 A simulação do sistema não linear com o controlador projetado mostra que as especificações são atendidas perto do ponto de operação, mas o desempenho degrada ao se afastar dele.
 
-% Figura temporariamente comentada para debugging de compilação
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.8\linewidth]{{"Trabalho 1 Sistemas de Controle/respostacompequenasvariaçoes"}.png}
-%     \caption{Resposta do sistema não linear com controlador para pequenas variações.}
-% \end{figure}
-\textit{(Figura temporariamente removida para fins de compilação. Será reinserida após resolução do problema.)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{"Trabalho 1 Sistemas de Controle/respostacompequenasvariaçoes.png"}
+    \caption{Resposta do sistema não linear com controlador para pequenas variações.}
+\end{figure}
 
 \chapter{Parte II: Controle por Lugar das Raízes e Feedforward}
 \section{Projeto de Controle por Lugar das Raízes (LR)}
@@ -152,13 +148,11 @@ C(s)=\frac{5.2946(s+3.835)^2}{s(s+20)}
 \end{equation}
 Este controlador, quando comparado ao PI da Parte I, oferece uma resposta mais suave e menos oscilatória, sendo mais adequado para a dinâmica de segunda ordem do sistema.
 
-% Figura temporariamente comentada para debugging de compilação
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.7\textwidth]{"Trabalho 2 Sistemas de Controle/image1".png}
-%     \caption{Comparação de desempenho: Controlador PI (azul) vs. Controlador por LR (vermelho).}
-% \end{figure}
-\textit{(Figura temporariamente removida para fins de compilação. Será reinserida após resolução do problema.)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{"Trabalho 2 Sistemas de Controle/image1.png"}
+    \caption{Comparação de desempenho: Controlador PI (azul) vs. Controlador por LR (vermelho).}
+\end{figure}
 
 \section{Melhora com Controle Feedforward}
 Para melhorar a rejeição à perturbação \(C_{af}\), uma estratégia de controle Feedforward é implementada. O controlador feedforward ideal é instável, então uma aproximação por ganho estático é utilizada:
@@ -167,25 +161,23 @@ C_{ff} \approx -0.4
 \end{equation}
 A simulação mostra uma melhoria drástica na rejeição à perturbação.
 
-% Figura temporariamente removida para debugging de compilação
-% \begin{figure}[H]
-%      \centering
-%      \begin{subfigure}[b]{0.48\textwidth}
-%          \centering
-%          \includegraphics[width=\textwidth]{"Trabalho 2 Sistemas de Controle/image3.png"}
-%          \caption{Sem Feedforward}
-%          \label{fig:sem_ff}
-%      \end{subfigure}
-%      \hfill
-%      \begin{subfigure}[b]{0.48\textwidth}
-%          \centering
-%          \includegraphics[width=\textwidth]{"Trabalho 2 Sistemas de Controle/image2.png"}
-%          \caption{Com Feedforward}
-%          \label{fig:com_ff}
-%      \end{subfigure}
-%      \caption{Comparação da rejeição à perturbação com e sem controle Feedforward.}
-% \end{figure}
-\textit{(Figura temporariamente removida para fins de compilação. Será reinserida após resolução do problema.)}
+\begin{figure}[H]
+     \centering
+     \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{"Trabalho 2 Sistemas de Controle/image3.png"}
+         \caption{Sem Feedforward}
+         \label{fig:sem_ff}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{"Trabalho 2 Sistemas de Controle/image2.png"}
+         \caption{Com Feedforward}
+         \label{fig:com_ff}
+     \end{subfigure}
+     \caption{Comparação da rejeição à perturbação com e sem controle Feedforward.}
+\end{figure}
 
 \chapter{Parte III: Controle com Atraso de Medição}
 \section{O Desafio do Atraso de Tempo}
@@ -194,19 +186,62 @@ Esta seção aborda um cenário mais realista onde a medição da concentração
 \section{Solução: Preditor de Smith}
 A estrutura do Preditor de Smith é utilizada para compensar o atraso. Ela funciona utilizando um modelo matemático do processo para "prever" a saída futura, removendo o efeito do atraso da malha de realimentação. Isso permite que o controlador principal, projetado para o processo sem atraso, opere de forma eficaz.
 
-% Figura temporariamente comentada para debugging de compilação
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.7\textwidth]{Imagens/q13.png}
-%     \caption{Estrutura conceitual do Preditor de Smith.}
-%     \label{fig:smith_predictor}
-% \end{figure}
-\textit{(Figura temporariamente removida para fins de compilação. Será reinserida após resolução do problema.)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Imagens/q13.png}
+    \caption{Estrutura conceitual do Preditor de Smith.}
+    \label{fig:smith_predictor}
+\end{figure}
 
 O controlador \(C(s)\) é o mesmo projetado na Parte II. O bloco \(G_p(s)\) é o modelo do processo sem atraso, e \(e^{-Ls}\) é o modelo do atraso. A diferença entre a saída real do processo e a saída do modelo (\(\epsilon\)) corrige erros de modelagem.
 
 \subsection{Resultados da Simulação}
 A simulação do sistema com o Preditor de Smith mostra que o desempenho desejado (tempo de acomodação e sobressinal) é recuperado, apesar do grande atraso. A análise de robustez, no entanto, mostra que o desempenho é sensível a erros na estimativa do atraso. Uma variante, o Preditor de Smith filtrado, pode ser usada para melhorar a robustez, ao custo de uma maior complexidade.
+
+\subsection{Análise Gráfica das Simulações}
+Os gráficos a seguir, gerados via Octave, detalham o comportamento do sistema com o Preditor de Smith e os componentes do controlador.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_resposta_degrau.png}
+    \caption{Resposta ao degrau do sistema com Preditor de Smith.}
+    \label{fig:resp_degrau_smith}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_bode_controlador.png}
+    \caption{Diagrama de Bode do controlador discreto C(z).}
+    \label{fig:bode_controlador}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_bode_filtro.png}
+    \caption{Diagrama de Bode do filtro de referência Fr(z).}
+    \label{fig:bode_filtro}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_margens_estabilidade.png}
+    \caption{Margens de ganho e fase do sistema em malha aberta.}
+    \label{fig:margens}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_lugar_raizes.png}
+    \caption{Lugar das raízes do sistema em malha aberta.}
+    \label{fig:lr}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figura_analise_robustez.png}
+    \caption{Análise de robustez com variações paramétricas.}
+    \label{fig:robustez}
+\end{figure}
 
 \chapter{Conclusões Gerais}
 Este trabalho demonstrou a aplicação progressiva de técnicas de controle a um reator químico.
