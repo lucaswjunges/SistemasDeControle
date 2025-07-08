@@ -268,6 +268,13 @@ end
 \textbf{Análise dos Resultados:}
 A simulação revela excelente concordância entre os modelos linear e não linear para variações de até 10\% no sinal de controle. O erro RMS típico é inferior a 2\%, validando a aproximação linear para o projeto do controlador.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_questao5_linear_vs_naolinear.png}
+    \caption{Comparação entre sistema linear e não-linear para validação do modelo linearizado. A resposta mostra boa concordância para pequenas variações em torno do ponto de operação.}
+    \label{fig:linear_vs_naolinear}
+\end{figure}
+
 \subsection{Questão 6: Projeto do Controle PI}
 
 Para o modelo simplificado de primeira ordem entre $U$ e $C_B$:
@@ -455,6 +462,13 @@ end
 \item \textbf{Variações moderadas (0.5 < $ \Delta r \leq$ 1.0 mol/l):} Degradação gradual do desempenho
 \item \textbf{Variações grandes ($ \Delta r >$ 1.0 mol/l):} Falha significativa com overshoot > 15\% e instabilidade potencial
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_questao8_pi_amplitudes.png}
+    \caption{Simulação do controlador PI com diferentes amplitudes de referência. O gráfico superior mostra as respostas temporais, enquanto o inferior demonstra a degradação do desempenho (aumento do overshoot) com o aumento da amplitude.}
+    \label{fig:pi_amplitudes}
+\end{figure}
 
 \subsection{Questão 9: Discretização do Controle}
 
@@ -1125,6 +1139,13 @@ A aplicação de grandes variações na referência (afastamento significativo d
   \end{figure}
 
 A análise revela que o Preditor de Smith apresenta robustez local adequada, com desempenho satisfatório para variações de até 0,5 mol/l na referência de $C_B$. Este resultado é consistente com os obtidos na parte 2, confirmando que o domínio de validade do controlador é determinado pelas características não-lineares do processo, independentemente da estrutura de controle adotada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figura_questao2_smith_predictor.png}
+    \caption{Comparação entre Preditor de Smith e controlador convencional. O Preditor de Smith oferece melhor desempenho temporal compensando efetivamente o atraso de medição, enquanto o controlador convencional mostra resposta mais lenta e com maior overshoot.}
+    \label{fig:smith_predictor_comparison}
+\end{figure}
 
 Para realizar um estudo sobre a robustez do sistema utilizando a planta linearizada, consideramos as seguintes equações:
 

@@ -497,7 +497,7 @@ subplot(2,2,3);
 scatter(overshoot_results, settling_time_results, 'filled');
 xlabel('Overshoot [%]'); ylabel('Tempo de Acomodacao [min]');
 title('Correlacao Overshoot vs Tempo');
-xline(5, 'r--'); yline(1.5, 'r--');
+hold on; plot([5, 5], ylim, 'r--', 'LineWidth', 2); plot(xlim, [1.5, 1.5], 'r--', 'LineWidth', 2);
 grid on;
 
 subplot(2,2,4);
@@ -522,7 +522,7 @@ Gp_cont = tf([-2.1699, 12.034], conv([1/6.9433, 1], [1/1.6433, 1]));
 Gp_disc = c2d(Gp_cont, Ts, 'zoh');
 
 % Modelo com atraso
-Gp_delay = Gp_disc * tf(1, [1 zeros(1, L_delay)], Ts);
+Gp_delay = Gp_disc * tf(1, [1 zeros(1, round(L_delay))], Ts);
 
 %% Controlador PI discreto
 Kc = 0.156; tau_i = 0.543*60; % Converter para segundos
@@ -550,7 +550,7 @@ CAF_signal(t_sim >= 10*60) = 5.1 - 0.2;  % Perturbacao em t=10min
 CB_response = zeros(size(t_sim));
 CA_response = zeros(size(t_sim));
 u_signal = zeros(size(t_sim));
-CB_buffer = 4.81 * ones(1, L_delay);  % Buffer do atraso
+CB_buffer = 4.81 * ones(1, round(L_delay));  % Buffer do atraso
 
 % Estados iniciais
 CA = 0.8; CB = 4.81;
